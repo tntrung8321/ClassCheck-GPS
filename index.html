@@ -6,9 +6,9 @@
   <meta name="theme-color" content="#1e3a8a" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>ClassCheck GPS — Hệ Thống Điểm Danh 1 Chạm & Chống Gian Lận</title>
+  <title>ClassCheck — Điểm Danh Lớp Học</title>
 
-  <!-- Version-Pinned QR Scanner (for Week 1 Onboarding / Pairing) & QR Generator -->
+  <!-- Version-Pinned QR Scanner & QR Generator Libraries -->
   <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
@@ -82,8 +82,8 @@
 
     /* Main Container */
     .container {
-      max-width: 640px;
-      margin: 16px auto;
+      max-width: 520px;
+      margin: 18px auto;
       padding: 0 14px;
     }
     .container.wide {
@@ -96,13 +96,13 @@
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 18px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     }
     .card-title {
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -110,9 +110,9 @@
       flex-wrap: wrap;
     }
     .subtext {
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       color: var(--muted);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     /* Form Controls */
@@ -162,7 +162,7 @@
       padding: 18px 20px;
       font-size: 1.08rem;
       border-radius: 14px;
-      box-shadow: 0 8px 20px rgba(15, 118, 110, 0.28);
+      box-shadow: 0 8px 20px rgba(15, 118, 110, 0.25);
     }
     .btn-checkin-hero:hover:not(:disabled) {
       background: linear-gradient(135deg, #0d9488 0%, #10b981 100%);
@@ -185,13 +185,13 @@
       flex-wrap: wrap;
       margin-top: 8px;
     }
-    .btn-row > .btn { flex: 1; min-width: 120px; }
+    .btn-row > .btn { flex: 1; min-width: 110px; }
 
-    /* Alerts & Receipts */
+    /* Alerts & Badges */
     .alert {
-      padding: 13px 15px;
+      padding: 12px 14px;
       border-radius: 10px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 600;
       margin-bottom: 14px;
       word-break: break-word;
@@ -200,50 +200,45 @@
     .alert-warn { background: var(--warn-bg); color: var(--warn-text); border: 1px solid #fde047; }
     .alert-err { background: var(--err-bg); color: var(--err-text); border: 1px solid #fca5a5; }
 
-    /* Anti-Cheat Security Checklist Box */
-    .shield-box {
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      border-radius: 12px;
-      padding: 12px 14px;
-      margin-bottom: 14px;
-      font-size: 0.83rem;
-    }
-    .shield-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 4px 0;
-      border-bottom: 1px dashed #e2e8f0;
-      gap: 8px;
-    }
-    .shield-row:last-child { border-bottom: none; }
     .badge-ok {
       background: #dcfce7;
       color: #166534;
-      padding: 2px 8px;
+      padding: 3px 10px;
       border-radius: 999px;
       font-weight: 700;
-      font-size: 0.74rem;
+      font-size: 0.75rem;
       white-space: nowrap;
     }
     .badge-err {
       background: #fee2e2;
       color: #991b1b;
-      padding: 2px 8px;
+      padding: 3px 10px;
       border-radius: 999px;
       font-weight: 700;
-      font-size: 0.74rem;
+      font-size: 0.75rem;
       white-space: nowrap;
     }
     .badge-warn {
       background: #fef9c3;
       color: #854d0e;
-      padding: 2px 8px;
+      padding: 3px 10px;
       border-radius: 999px;
       font-weight: 700;
-      font-size: 0.74rem;
+      font-size: 0.75rem;
       white-space: nowrap;
+    }
+
+    /* Student Identity Pill */
+    .student-id-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f1f5f9;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--primary);
     }
 
     /* Camera Box */
@@ -255,43 +250,56 @@
       margin-bottom: 12px;
     }
 
-    /* Projector Split View */
+    /* Lecturer Dashboard Grid */
     .projector-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 20px;
-      align-items: center;
+      gap: 18px;
+      align-items: stretch;
     }
     @media (min-width: 768px) {
-      .projector-grid { grid-template-columns: 1.1fr 0.9fr; }
+      .projector-grid { grid-template-columns: 1fr 1fr; }
     }
-    .qr-display-box {
+    .gps-station-box {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      background: #fff;
-      border: 2px dashed #cbd5e1;
+      padding: 18px;
+      background: linear-gradient(135deg, #f0fdfa 0%, #eff6ff 100%);
+      border: 2px solid #99f6e4;
       border-radius: 16px;
+      text-align: center;
+    }
+    .radar-circle {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: rgba(15, 118, 110, 0.14);
+      border: 2px solid #0f766e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 8px;
     }
     .timer-big {
-      font-size: 3.2rem;
+      font-size: 3rem;
       font-weight: 800;
       font-variant-numeric: tabular-nums;
       color: var(--primary);
       text-align: center;
       line-height: 1.1;
-      margin: 8px 0;
+      margin: 6px 0;
     }
     .counter-badge {
       background: #f1f5f9;
       border-radius: 12px;
-      padding: 14px;
+      padding: 12px;
       text-align: center;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      margin: 10px 0;
+      margin: 8px 0;
     }
 
     /* Roster Table */
@@ -339,7 +347,7 @@
       margin-left: 4px;
     }
 
-    /* Custom Modal (Replaces native confirm/alert for Canvas & Mobile compatibility) */
+    /* Custom Modal */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -353,27 +361,27 @@
     .modal-card {
       background: #fff;
       border-radius: 16px;
-      max-width: 420px;
+      max-width: 400px;
       width: 100%;
-      padding: 22px;
+      padding: 20px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
       text-align: center;
     }
     .modal-title {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 800;
       margin-bottom: 8px;
       color: var(--text);
     }
     .modal-body {
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: var(--muted);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
+      white-space: pre-line;
     }
 
     .hidden { display: none !important; }
 
-    /* Print Poster Styling */
     @media print {
       body * { visibility: hidden; }
       #printable-poster, #printable-poster * { visibility: visible; }
@@ -395,7 +403,7 @@
   <!-- TOP HEADER -->
   <header class="topbar no-print">
     <div class="brand">
-      <span>🎓 ClassCheck GPS</span>
+      <span>🎓 ClassCheck</span>
     </div>
     <div class="top-actions">
       <button id="btn-mode-student" class="pill-btn active" onclick="switchMode('STUDENT')">Student</button>
@@ -406,201 +414,194 @@
 
   <main id="main-container" class="container">
 
-    <!-- iOS / BROWSER GUARD BANNER -->
-    <div id="ios-install-banner" class="alert alert-warn hidden">
+    <!-- ONLY SHOWN IF OPENED INSIDE ZALO / MESSENGER WEBVIEW -->
+    <div id="ios-install-banner" class="alert alert-err hidden">
       <div id="t-ios-guard"></div>
     </div>
 
     <!-- GLOBAL STATUS / RECEIPT ALERT -->
     <div id="status-box" class="alert hidden"></div>
 
-    <!-- SHARED CAMERA CONTAINER (Used for Week 1 Onboarding or Lecturer Pairing) -->
+    <!-- SHARED CAMERA CONTAINER -->
     <div id="camera-modal-box" class="card hidden">
       <div class="card-title">
-        <span data-i18n="cam_modal_title">📷 QR Scanner</span>
+        <span data-i18n="cam_modal_title">📷 Quét QR</span>
         <button id="btn-stop-camera" class="btn btn-outline btn-sm" onclick="stopCameraScanner()" data-i18n="btn_cancel_scan">Cancel Camera</button>
       </div>
       <div id="qr-reader"></div>
     </div>
 
     <!-- ================================================================== -->
-    <!-- VIEW 1: STUDENT MODE                                               -->
+    <!-- VIEW 1: MINIMALIST STUDENT MODE                                    -->
     <!-- ================================================================== -->
     <section id="view-student">
 
-      <!-- 1A. COURSE / LECTURER SWITCHER CARD -->
+      <!-- 1A. STUDENT INFO & CLASS SELECTOR (CLEAN & COMPACT) -->
       <div class="card">
-        <div class="card-title">
-          <span data-i18n="stu_course_title">Khóa học đã đăng ký</span>
+        <div class="card-title" style="margin-bottom:8px;">
+          <span data-i18n="stu_course_title">Thông tin Điểm danh</span>
           <button class="btn btn-outline btn-sm" onclick="toggleAddCourseBox()" data-i18n="stu_add_course_btn">+ Link Course</button>
         </div>
 
         <div id="student-has-courses" class="hidden">
-          <label data-i18n="stu_select_lecturer">Giảng viên:</label>
-          <select id="sel-student-inst" onchange="onStudentInstChange()"></select>
+          <div class="student-id-pill" style="margin-bottom:10px;">
+            <span id="stu-bound-info">👤 Sinh viên</span>
+          </div>
+
+          <select id="sel-student-inst" class="hidden" onchange="onStudentInstChange()"></select>
 
           <label data-i18n="stu_select_class">Lớp học phần:</label>
-          <select id="sel-student-class"></select>
-
-          <div class="subtext" id="stu-bound-info" style="margin-bottom:0; font-weight:600; color:var(--primary);"></div>
+          <select id="sel-student-class" style="margin-bottom:0;"></select>
         </div>
 
-        <div id="student-no-courses">
-          <p class="subtext" data-i18n="stu_no_course_desc">
-            Thiết lập Tuần 1 (Chỉ làm 1 lần đầu kỳ): Nhập Mã số sinh viên (MSSV) bên dưới để khóa cố định điện thoại của bạn với danh sách lớp của Thầy Trần Nguyên Trung.
+        <div id="student-no-courses" class="hidden">
+          <p class="subtext" data-i18n="stu_no_course_desc" style="margin-bottom:6px;">
+            Nhập MSSV để liên kết lớp học (chỉ cần nhập 1 lần đầu kỳ).
           </p>
         </div>
 
         <!-- ONBOARDING / LINK NEW COURSE SUB-PANEL -->
-        <div id="box-add-course" class="hidden" style="margin-top:12px; padding-top:12px; border-top:1px solid var(--border);">
-          <label data-i18n="stu_id_label">Mã số sinh viên (MSSV) của bạn:</label>
-          <input type="text" id="inp-student-id" placeholder="VD: 26715961" />
+        <div id="box-add-course" class="hidden" style="margin-top:10px; padding-top:10px; border-top:1px solid var(--border);">
+          <label data-i18n="stu_id_label">Mã số sinh viên (MSSV):</label>
+          <input type="text" id="inp-student-id" placeholder="Nhập MSSV..." />
 
-          <div style="margin-bottom:10px;">
-            <a href="javascript:void(0)" style="font-size:0.78rem; color:var(--muted);" onclick="toggleAdvancedApiBox()" data-i18n="stu_toggle_api_link">
-              ⚙️ Đổi URL giảng viên khác hoặc Quét QR Khóa học
+          <button class="btn btn-primary" onclick="submitStudentOnboarding()" data-i18n="stu_register_btn">Verify Roster & Register Device</button>
+
+          <div style="margin-top:8px; text-align:right;">
+            <a href="javascript:void(0)" style="font-size:0.75rem; color:var(--muted);" onclick="toggleAdvancedApiBox()" data-i18n="stu_toggle_api_link">
+              ⚙️ Cài đặt nâng cao
             </a>
           </div>
 
-          <div id="box-advanced-api" class="hidden" style="margin-bottom:10px;">
-            <div class="btn-row" style="margin-bottom:10px;">
+          <div id="box-advanced-api" class="hidden" style="margin-top:8px;">
+            <div class="btn-row" style="margin-bottom:8px;">
               <button class="btn btn-outline btn-sm" onclick="startCameraScanner('ONBOARD')" data-i18n="stu_scan_onboard_qr">📷 Scan Onboarding QR</button>
             </div>
-            <label data-i18n="stu_api_url_label">URL Web App của Giảng viên:</label>
+            <label data-i18n="stu_api_url_label">Web App URL:</label>
             <input type="text" id="inp-onboard-api" placeholder="https://script.google.com/macros/s/.../exec" />
           </div>
-
-          <div class="subtext" style="font-size:0.78rem; background:#f1f5f9; padding:9px; border-radius:8px;" data-i18n="privacy_notice">
-            🔒 Chống gian lận & Quyền riêng tư: Mỗi điện thoại (Safari trên iOS / Chrome trên Android) chỉ được gắn duy nhất 1 MSSV trong suốt học kỳ. Vị trí GPS chỉ được đo tại thời điểm bạn bấm nút Điểm danh.
-          </div>
-
-          <button class="btn btn-primary" onclick="submitStudentOnboarding()" data-i18n="stu_register_btn">Verify Roster & Register Device</button>
         </div>
       </div>
 
-      <!-- 1B. DAILY 1-TAP GPS CHECK-IN CARD (NO CAMERA REQUIRED) -->
+      <!-- 1B. ULTRA-CLEAN 1-TAP CHECK-IN CARD -->
       <div class="card" id="card-daily-checkin">
-        <div class="card-title">
-          <span data-i18n="stu_checkin_title">Điểm danh 1 Chạm (GPS ≤ 100m)</span>
-          <span id="gps-live-pill" class="badge-ok">GPS Sẵn sàng</span>
-        </div>
-        <p class="subtext" data-i18n="stu_checkin_desc">
-          Khi giảng viên mở phiên điểm danh trên lớp, hãy bật Định vị (GPS) và bấm nút bên dưới. Không cần quét mã QR.
-        </p>
-
-        <!-- ANTI-CHEAT SECURITY CHECKLIST -->
-        <div class="shield-box" id="student-shield-box">
-          <div class="shield-row">
-            <span data-i18n="shield_browser_label">🌐 Trình duyệt chính (Chống mở nhiều app):</span>
-            <span id="shield-browser-status" class="badge-ok">Đang kiểm tra...</span>
-          </div>
-          <div class="shield-row">
-            <span data-i18n="shield_device_label">📱 Thiết bị di động thật (Chặn PC Fake GPS):</span>
-            <span id="shield-device-status" class="badge-ok">Đang kiểm tra...</span>
-          </div>
-          <div class="shield-row">
-            <span data-i18n="shield_id_label">🔒 Khóa phần cứng (1 Máy = 1 MSSV):</span>
-            <span id="shield-id-status" class="badge-warn">Chưa liên kết</span>
-          </div>
+        <div class="card-title" style="margin-bottom:14px;">
+          <span data-i18n="stu_checkin_title">Điểm danh Lớp học</span>
+          <span id="gps-live-pill" class="badge-ok">Sẵn sàng</span>
         </div>
 
-        <!-- 1-BUTTON HERO CHECK-IN -->
+        <!-- Hidden anti-cheat state nodes (runs silently in background) -->
+        <div id="student-shield-box" class="hidden">
+          <span id="shield-browser-status"></span>
+          <span id="shield-device-status"></span>
+          <span id="shield-id-status"></span>
+        </div>
+
         <button id="btn-start-checkin" class="btn btn-checkin-hero" onclick="handleOneTapGpsCheckIn()" data-i18n="stu_one_tap_checkin_btn">
-          📍 BẤM ĐỂ ĐIỂM DANH NGAY
+          📍 BẤM ĐỂ ĐIỂM DANH
         </button>
 
         <div id="stu-gps-telemetry" class="subtext hidden" style="margin-top:10px; margin-bottom:0; text-align:center; font-weight:600;"></div>
 
-        <!-- Optional backup manual/QR code expander if lecturer uses rotating token -->
-        <div style="margin-top:12px; text-align:center;">
-          <a href="javascript:void(0)" style="font-size:0.78rem; color:var(--muted);" onclick="toggleManualQrInput()" data-i18n="stu_camera_issue_link">
-            Giảng viên yêu cầu quét QR Động hoặc nhập mã tay? Bấm vào đây
-          </a>
-          <div id="box-manual-qr" class="hidden" style="margin-top:10px; padding-top:10px; border-top:1px dashed var(--border);">
-            <div class="btn-row" style="margin-bottom:8px;">
-              <button class="btn btn-outline btn-sm" onclick="startCameraScanner('CHECKIN')" data-i18n="stu_scan_checkin_btn">📷 Scan Classroom QR to Check In</button>
-            </div>
-            <input type="text" id="inp-manual-qr" placeholder="Nhập mã lớp dự phòng (nếu có)..." />
-            <button class="btn btn-outline btn-sm" onclick="handleManualQrSubmit()" data-i18n="stu_submit_manual_qr">Submit Code with GPS</button>
-          </div>
+        <!-- Hidden fallback scanner / manual box -->
+        <div id="box-manual-qr" class="hidden" style="margin-top:10px;">
+          <button class="btn btn-outline btn-sm" onclick="startCameraScanner('CHECKIN')" data-i18n="stu_scan_checkin_btn">📷 Scan Classroom QR to Check In</button>
+          <input type="text" id="inp-manual-qr" />
+          <button class="btn btn-outline btn-sm" onclick="handleManualQrSubmit()" data-i18n="stu_submit_manual_qr">Submit Code with GPS</button>
         </div>
       </div>
 
     </section>
 
     <!-- ================================================================== -->
-    <!-- VIEW 2: LECTURER MODE (PHONE REMOTE & CLASSROOM PC DASHBOARD)      -->
+    <!-- VIEW 2: LECTURER MODE (ROTATING SHEET CODE AUTH & 100m STATION)    -->
     <!-- ================================================================== -->
     <section id="view-teacher" class="hidden">
 
-      <!-- 2A. LECTURER LOGIN / PAIRING CARD -->
+      <!-- 2A. LECTURER LOGIN CARD (NO CODE HINT LEAKED TO STUDENTS) -->
       <div id="card-teacher-login" class="card">
-        <div class="card-title" data-i18n="tea_login_title">Xác thực Giảng viên</div>
+        <div class="card-title" data-i18n="tea_login_title">Đăng nhập Giảng viên</div>
         <p class="subtext" data-i18n="tea_login_desc">
-          Quét mã QR Ghép nối Giảng viên trong Google Sheet (dành cho điện thoại cá nhân), hoặc nhập Mã PC Tạm thời (6 chữ số).
+          Nhập Mã phiên 6 số hiển thị trong Google Sheet (tự động đổi mới theo phiên) hoặc Master Key.
         </p>
 
-        <div class="btn-row" style="margin-bottom:12px;">
-          <button class="btn btn-outline btn-sm" onclick="startCameraScanner('TEACHER_PAIR')" data-i18n="tea_scan_pair_qr">📷 Scan Lecturer Pairing QR</button>
-        </div>
+        <label data-i18n="tea_token_label">Mật khẩu phiên (trên Sheet) hoặc Master Key:</label>
+        <input type="password" id="inp-tea-token" placeholder="Nhập mã bảo mật từ Google Sheet..." autocomplete="off" />
 
-        <label data-i18n="tea_api_url_label">URL Web App (Google Apps Script):</label>
-        <input type="text" id="inp-tea-api" placeholder="https://script.google.com/macros/s/.../exec" />
-
-        <label data-i18n="tea_token_label">Master Key HOẶC Mã PC 6 số:</label>
-        <input type="password" id="inp-tea-token" placeholder="TKEY_... hoặc mã 6 số (VD: 533686)" />
-
-        <label data-i18n="tea_session_type_label">Loại thiết bị:</label>
+        <label data-i18n="tea_session_type_label">Chế độ lưu đăng nhập:</label>
         <select id="sel-tea-persistence">
-          <option value="LOCAL" data-i18n="tea_persist_phone">Điện thoại / Laptop cá nhân (Giữ đăng nhập)</option>
-          <option value="SESSION" data-i18n="tea_persist_pc">Máy tính phòng học dùng chung (Tự đăng xuất khi đóng tab)</option>
+          <option value="LOCAL" selected data-i18n="tea_persist_phone">Thiết bị cá nhân của Giảng viên (Giữ đăng nhập)</option>
+          <option value="SESSION" data-i18n="tea_persist_pc">Máy tính phòng học (Tự đăng xuất khi đóng tab)</option>
         </select>
 
         <button class="btn btn-primary" onclick="loginTeacher()" data-i18n="tea_login_btn">Sign In to Teacher Mode</button>
+
+        <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center;">
+          <button class="btn btn-outline btn-sm" onclick="startCameraScanner('TEACHER_PAIR')" data-i18n="tea_scan_pair_qr">📷 Scan Lecturer Pairing QR</button>
+          <a href="javascript:void(0)" style="font-size:0.76rem; color:var(--muted);" onclick="toggleTeacherApiBox()">
+            ⚙️ Cấu hình URL
+          </a>
+        </div>
+
+        <div id="box-tea-api-advanced" class="hidden" style="margin-top:10px; padding:10px; background:#f8fafc; border-radius:10px; border:1px solid var(--border);">
+          <label data-i18n="tea_api_url_label">Web App URL:</label>
+          <input type="text" id="inp-tea-api" placeholder="https://script.google.com/macros/s/.../exec" style="margin-bottom:6px;" />
+          <button class="btn btn-outline btn-sm" onclick="resetToDefaultLecturerApi()">🔄 Khôi phục mặc định</button>
+        </div>
       </div>
 
-      <!-- 2B. ACTIVE TEACHER DASHBOARD (5 PANELS) -->
+      <!-- 2B. ACTIVE TEACHER DASHBOARD -->
       <div id="box-teacher-dashboard" class="hidden">
 
-        <!-- PANEL 1: SESSION CONTROL & PROJECTOR VIEW -->
+        <!-- PANEL 1: 100m GPS STATION & SESSION CONTROL -->
         <div class="card">
           <div class="card-title">
-            <span data-i18n="tea_panel1_title">1. Điều khiển Phiên Điểm danh (100m từ ĐT Giảng viên)</span>
+            <span data-i18n="tea_panel1_title">1. Điều khiển Điểm danh (Bán kính 100m)</span>
             <div style="display:flex; gap:6px;">
               <button class="btn btn-outline btn-sm" onclick="toggleProjectorFullscreen()" data-i18n="tea_fullscreen_btn">🖥️ Projector View</button>
-              <button class="btn btn-outline btn-sm" onclick="refreshTeacherState()" title="Refresh">🔄</button>
+              <button class="btn btn-outline btn-sm" onclick="refreshTeacherState()" title="Làm mới">🔄</button>
             </div>
           </div>
 
-          <label data-i18n="tea_select_class">Lớp đang chọn:</label>
+          <label data-i18n="tea_select_class">Lớp học phần:</label>
           <select id="sel-tea-class" onchange="onTeacherClassChange()"></select>
 
           <div class="projector-grid">
-            <!-- Left: Status / Optional QR Box -->
-            <div class="qr-display-box" id="printable-poster">
-              <div style="font-weight:700; font-size:1.05rem; margin-bottom:6px;" id="poster-class-title">Class</div>
-              <div id="teacher-qr-canvas" style="margin:10px 0;"></div>
-              <div style="font-size:0.8rem; color:var(--muted); text-align:center;" id="poster-qr-subtitle">
-                Sinh viên bấm nút "📍 Điểm danh ngay" trên web (hoặc quét mã này)
+            <!-- Left: GPS Station Info -->
+            <div class="gps-station-box" id="printable-poster">
+              <div class="radar-circle">📍</div>
+              <div style="font-weight:800; font-size:1.05rem; color:var(--primary); margin-bottom:4px;" id="poster-class-title">
+                Lớp học phần
               </div>
+              <div style="font-size:0.84rem; font-weight:700; color:var(--accent); margin-bottom:8px;" id="tea-gps-coords-badge">
+                Tâm 100m: Đang tải...
+              </div>
+              <div style="font-size:0.8rem; color:var(--muted); margin-bottom:10px;" id="poster-qr-subtitle">
+                Sinh viên mở web và bấm nút Điểm danh trong bán kính 100m.
+              </div>
+
+              <button class="btn btn-outline btn-sm no-print" onclick="teacherCalibrateRoomGpsNow()">
+                📍 Đặt vị trí máy này làm Tâm 100m
+              </button>
+
+              <div id="teacher-qr-canvas" class="hidden" style="margin-top:10px; padding:10px; background:#fff; border-radius:10px;"></div>
             </div>
 
-            <!-- Right: Countdown + Counter + Start/Stop Buttons -->
+            <!-- Right: Timer & Controls -->
             <div>
               <div id="tea-session-badge" style="text-align:center; font-weight:700; font-size:0.9rem; color:var(--muted);">
-                SESSION CLOSED
+                🔒 ĐANG ĐÓNG
               </div>
               <div class="timer-big" id="tea-countdown">00:00</div>
 
               <div class="counter-badge">
                 <span id="tea-live-count">0 / 0</span>
-                <div style="font-size:0.8rem; font-weight:500; color:var(--muted);" id="tea-live-breakdown">Present: 0 | Late: 0</div>
+                <div style="font-size:0.8rem; font-weight:500; color:var(--muted);" id="tea-live-breakdown">Có mặt: 0 | Đi trễ: 0</div>
               </div>
 
-              <!-- GPS Calibration Mode Checkbox (Checked by default so lecturer's phone sets the 100m center) -->
               <label style="display:flex; align-items:center; gap:8px; cursor:pointer; margin:10px 0; background:#f0fdf4; padding:8px 10px; border-radius:8px; border:1px solid #bbf7d0;">
                 <input type="checkbox" id="chk-use-phone-gps" checked style="width:18px; height:18px;" />
-                <span data-i18n="tea_calibrate_gps_chk">📍 Lấy vị trí GPS của điện thoại này làm tâm 100m khi Bắt đầu</span>
+                <span data-i18n="tea_calibrate_gps_chk">📍 Cập nhật Tâm 100m theo GPS máy này khi Bắt đầu</span>
               </label>
 
               <button id="btn-tea-start" class="btn btn-accent" onclick="teacherStartSession()" data-i18n="tea_start_btn">
@@ -616,42 +617,40 @@
           </div>
         </div>
 
-        <!-- PANEL 2 & 3: LIVE ROSTER, CO-CHECKIN ANTI-2-PHONE DETECTOR & SPOT CHECK -->
+        <!-- PANEL 2: LIVE ROSTER & ANTI-CHEAT -->
         <div class="card no-print">
           <div class="card-title">
-            <span data-i18n="tea_panel2_title">2. Danh sách Lớp & Chống cầm 2 máy điểm danh hộ</span>
+            <span data-i18n="tea_panel2_title">2. Danh sách Lớp & Kiểm tra Ngẫu nhiên</span>
             <div style="display:flex; gap:6px; flex-wrap:wrap;">
               <button class="btn btn-primary btn-sm" onclick="triggerRandomSpotCheck()" data-i18n="tea_spot_check_btn">🎲 Gọi ngẫu nhiên 1 SV</button>
               <button class="btn btn-outline btn-sm" onclick="toggleRosterVisibility()" id="btn-toggle-names" data-i18n="tea_show_hide_names">👁️ Show/Hide List</button>
             </div>
           </div>
 
-          <!-- Co-Checkin Warning Banner (Auto-detects students tapping within <= 5 seconds of each other) -->
           <div id="tea-suspect-banner" class="alert alert-warn hidden" style="font-size:0.84rem;"></div>
 
-          <input type="text" id="inp-roster-search" placeholder="🔍 Tìm MSSV hoặc Họ tên sinh viên..." oninput="renderTeacherRoster()" />
+          <input type="text" id="inp-roster-search" placeholder="🔍 Tìm MSSV hoặc Họ tên..." oninput="renderTeacherRoster()" />
 
           <div id="tea-roster-container" class="roster-list"></div>
         </div>
 
-        <!-- PANEL 4 & 5: QR STUDIO, REGISTRATION GATE & ADMIN TOOLS -->
+        <!-- PANEL 3: ADMIN TOOLS -->
         <div class="card no-print">
-          <div class="card-title" data-i18n="tea_panel4_title">3. Cổng Đăng ký Thiết bị & Quản trị Google Sheet</div>
+          <div class="card-title" data-i18n="tea_panel4_title">3. Quản trị Lớp học</div>
 
-          <div class="btn-row" style="margin-bottom:10px;">
-            <button id="btn-qr-mode-toggle" class="btn btn-outline btn-sm" onclick="toggleQrMode()">
-              QR Mode: STATIC
-            </button>
+          <div class="btn-row" style="margin-bottom:8px;">
             <button id="btn-reg-gate-toggle" class="btn btn-outline btn-sm" onclick="teacherToggleRegGate()">
               New Student Registration: OPEN
             </button>
-          </div>
-
-          <div class="btn-row">
-            <button class="btn btn-outline btn-sm" onclick="window.print()" data-i18n="tea_print_qr_btn">🖨️ Print Classroom QR Poster</button>
-            <button class="btn btn-outline btn-sm" onclick="teacherRotateStaticQr()" data-i18n="tea_replace_qr_btn">🔑 Replace Static QR Secret</button>
             <button class="btn btn-outline btn-sm" onclick="teacherRebuildSheet()" data-i18n="tea_rebuild_sheet_btn">📊 Sync Sheet Grids</button>
             <button class="btn btn-danger btn-sm" onclick="logoutTeacher()" data-i18n="tea_logout_btn">Sign Out</button>
+          </div>
+
+          <!-- Hidden legacy buttons preserved for compatibility -->
+          <div class="hidden">
+            <button id="btn-qr-mode-toggle" onclick="toggleQrMode()">QR Mode: STATIC</button>
+            <button onclick="window.print()" data-i18n="tea_print_qr_btn">🖨️ Print Classroom QR Poster</button>
+            <button onclick="teacherRotateStaticQr()" data-i18n="tea_replace_qr_btn">🔑 Replace Static QR Secret</button>
           </div>
         </div>
 
@@ -660,7 +659,7 @@
 
   </main>
 
-  <!-- IN-PAGE MODAL FOR CONFIRMATIONS & RANDOM SPOT-CHECK (No blocked browser dialogs) -->
+  <!-- IN-PAGE MODAL -->
   <div id="app-modal" class="modal-backdrop hidden no-print">
     <div class="modal-card">
       <div id="app-modal-title" class="modal-title">Xác nhận</div>
@@ -675,15 +674,17 @@
   <script>
     /**
      * ========================================================================
-     * 0. PRE-CONFIGURED MASTER SHEET SETTINGS (Thầy Trần Nguyên Trung)
+     * 0. MASTER SHEET CONNECTION SETTINGS
      * ========================================================================
      */
-    const DEFAULT_LECTURER_API = 'https://script.google.com/macros/s/AKfycbzuSyHCUnHiMsLr6r-VEfPK8ghEHiWO0109azkoo1VstAMhfoBQ9v1agRj3gsHNXIw/exec';
+    const DEFAULT_LECTURER_API = 'https://script.google.com/macros/s/AKfycbwbpZhoQtQJjPhvmsVg8vNxhPL4v2bcXDWUewxSIlMgf8iGq75lr6vzZZwVMiQ-YaS7/exec';
+    const LEGACY_LECTURER_APIS = [
+      'https://script.google.com/macros/s/AKfycbzuSyHCUnHiMsLr6r-VEfPK8ghEHiWO0109azkoo1VstAMhfoBQ9v1agRj3gsHNXIw/exec',
+      'https://script.google.com/macros/s/AKfycbz01o_3_O5PxuDq9V8uQ0cJy1ahCgEcM_QSlgNHLvkD8awXq0QCnf3HmoSRQl4PxBQM/exec'
+    ];
     const DEFAULT_LECTURER_NAME = 'Tran Nguyen Trung';
     const DEFAULT_INST_ID = 'INST_yu8gCgWWy8';
 
-    // Pre-mapped static class tokens from Classes_Config in Master Sheet
-    // Allows 1-Button GPS check-in to work seamlessly with existing Code.gs!
     const KNOWN_CLASS_SECRETS = {
       '2610AVCB002': 'QR_2610AVCB002_ZETUGC',
       '2610AVCB003': 'QR_2610AVCB003_EPCZFV',
@@ -693,145 +694,131 @@
 
     /**
      * ========================================================================
-     * 1. BILINGUAL DICTIONARY (VI / EN)
+     * 1. CONCISE BILINGUAL DICTIONARY (VI / EN)
      * ========================================================================
      */
     const I18N = {
       vi: {
         cam_modal_title: "📷 Quét mã QR",
-        stu_course_title: "Khóa học đã đăng ký",
-        stu_add_course_btn: "+ Liên kết / Đổi MSSV",
+        stu_course_title: "Thông tin Sinh viên",
+        stu_add_course_btn: "Đổi / Liên kết MSSV",
         stu_select_lecturer: "Giảng viên:",
         stu_select_class: "Lớp học phần:",
-        stu_no_course_desc: "Thiết lập Tuần 1 (Chỉ làm 1 lần đầu kỳ): Nhập Mã số sinh viên (MSSV) bên dưới để khóa cố định điện thoại của bạn với danh sách lớp của Thầy Trần Nguyên Trung.",
-        stu_scan_onboard_qr: "📷 Quét mã QR Khóa học",
-        stu_toggle_api_link: "⚙️ Đổi URL giảng viên khác hoặc Quét QR Khóa học",
-        stu_api_url_label: "URL Web App của Giảng viên:",
-        stu_id_label: "Mã số sinh viên (MSSV) của bạn:",
-        privacy_notice: "🔒 Chống gian lận & Quyền riêng tư: Mỗi điện thoại (Safari trên iOS / Chrome trên Android) chỉ được gắn duy nhất 1 MSSV trong suốt học kỳ. Vị trí GPS chỉ được đo tại thời điểm bạn bấm nút Điểm danh.",
-        stu_register_btn: "Xác thực Danh sách & Khóa Thiết bị",
-        stu_checkin_title: "Điểm danh 1 Chạm (GPS ≤ 100m)",
-        stu_checkin_desc: "Khi giảng viên mở phiên điểm danh trên lớp, hãy bật Định vị (GPS) và bấm nút bên dưới. Không cần quét mã QR.",
-        shield_browser_label: "🌐 Trình duyệt chính (Chống mở 2 app):",
-        shield_device_label: "📱 Thiết bị di động (Chặn PC Fake GPS):",
-        shield_id_label: "🔒 Khóa phần cứng (1 Máy = 1 MSSV):",
-        btn_cancel_scan: "Đóng Camera",
-        stu_one_tap_checkin_btn: "📍 BẤM ĐỂ ĐIỂM DANH NGAY",
-        stu_scan_checkin_btn: "📷 Mở Camera Quét QR",
-        stu_camera_issue_link: "Giảng viên bật QR Động 15s hoặc cần nhập mã tay? Bấm vào đây",
-        stu_submit_manual_qr: "Gửi mã kèm GPS",
-        tea_login_title: "Xác thực Giảng viên",
-        tea_login_desc: "Quét mã QR Ghép nối Giảng viên trong Google Sheet (dành cho điện thoại cá nhân), hoặc nhập Mã PC Tạm thời (6 chữ số).",
-        tea_scan_pair_qr: "📷 Quét QR Ghép nối Giảng viên",
-        tea_api_url_label: "URL Web App (Google Apps Script):",
-        tea_token_label: "Master Key HOẶC Mã PC 6 số:",
-        tea_session_type_label: "Loại thiết bị:",
-        tea_persist_phone: "Điện thoại / Laptop cá nhân (Giữ đăng nhập)",
-        tea_persist_pc: "Máy tính phòng học dùng chung (Tự đăng xuất khi đóng tab)",
-        tea_login_btn: "Đăng nhập Chế độ Giảng viên",
-        tea_panel1_title: "1. Điều khiển Phiên Điểm danh (100m từ ĐT Giảng viên)",
+        stu_no_course_desc: "Nhập MSSV để liên kết lớp học (chỉ cần nhập 1 lần đầu kỳ).",
+        stu_scan_onboard_qr: "📷 Quét QR Khóa học",
+        stu_toggle_api_link: "⚙️ Cài đặt nâng cao",
+        stu_api_url_label: "URL Web App:",
+        stu_id_label: "Mã số sinh viên (MSSV):",
+        stu_register_btn: "Lưu & Liên kết MSSV",
+        stu_checkin_title: "Điểm danh Lớp học",
+        btn_cancel_scan: "Đóng",
+        stu_one_tap_checkin_btn: "📍 BẤM ĐỂ ĐIỂM DANH",
+        stu_scan_checkin_btn: "📷 Quét QR",
+        stu_submit_manual_qr: "Gửi",
+        tea_login_title: "Đăng nhập Giảng viên",
+        tea_login_desc: "Nhập Mã phiên 6 số hiển thị trong Google Sheet (tự động đổi mới theo phiên) hoặc Master Key.",
+        tea_scan_pair_qr: "📷 Quét QR Ghép nối",
+        tea_api_url_label: "URL Web App (ô B4):",
+        tea_token_label: "Mật khẩu phiên (trên Sheet) hoặc Master Key:",
+        tea_session_type_label: "Thiết bị:",
+        tea_persist_phone: "Thiết bị cá nhân của Giảng viên (Giữ đăng nhập)",
+        tea_persist_pc: "Máy tính phòng học (Tự đăng xuất khi đóng tab)",
+        tea_login_btn: "Đăng nhập",
+        tea_panel1_title: "1. Điều khiển Điểm danh (Bán kính 100m)",
         tea_fullscreen_btn: "🖥️ Toàn màn hình",
-        tea_select_class: "Lớp đang chọn:",
-        tea_calibrate_gps_chk: "📍 Lấy vị trí GPS của điện thoại này làm tâm 100m khi Bắt đầu",
+        tea_select_class: "Lớp học phần:",
+        tea_calibrate_gps_chk: "📍 Cập nhật Tâm 100m theo GPS máy này khi Bắt đầu",
         tea_start_btn: "▶️ BẮT ĐẦU ĐIỂM DANH",
         tea_extend_btn: "+2 Phút",
         tea_reopen_btn: "Mở lại 5p",
         tea_close_btn: "Đóng ngay",
-        tea_panel2_title: "2. Danh sách Lớp & Chống cầm 2 máy điểm danh hộ",
+        tea_panel2_title: "2. Danh sách Lớp & Kiểm tra Ngẫu nhiên",
         tea_spot_check_btn: "🎲 Gọi ngẫu nhiên 1 SV",
         tea_show_hide_names: "👁️ Ẩn/Hiện",
-        tea_panel4_title: "3. Cổng Đăng ký Thiết bị & Quản trị Google Sheet",
-        tea_print_qr_btn: "🖨️ In Bảng QR Lớp học",
-        tea_replace_qr_btn: "🔑 Đổi mã khóa lớp",
-        tea_rebuild_sheet_btn: "📊 Đồng bộ Bảng điểm danh",
+        tea_panel4_title: "3. Quản trị Lớp học",
+        tea_print_qr_btn: "🖨️ In QR",
+        tea_replace_qr_btn: "🔑 Đổi khóa",
+        tea_rebuild_sheet_btn: "📊 Đồng bộ vào Sheet",
         tea_logout_btn: "Đăng xuất",
-        ios_guard_msg: "📱 Quy tắc chống gian lận: Trên iPhone chỉ dùng Safari gốc; trên Android chỉ dùng Chrome gốc. Không mở qua Zalo/Messenger để tránh bị khóa thiết bị.",
-        ONBOARD_CONFIRMED: "✅ Đã khóa thiết bị thành công! Sinh viên: {name} ({id}) — Đã liên kết {count} lớp.",
-        CONFIRMED_PRESENT: "✅ ĐIỂM DANH THÀNH CÔNG: CÓ MẶT ({time} | cách giảng viên {dist}m)",
-        CONFIRMED_LATE: "🕒 ĐIỂM DANH THÀNH CÔNG: ĐI TRỄ ({time} | cách giảng viên {dist}m)",
-        ALREADY_RECORDED: "ℹ️ Bạn đã điểm danh buổi học này rồi ({status} lúc {time}).",
-        ERR_NOT_ON_ROSTER: "❌ Không tìm thấy MSSV {id} trong danh sách lớp của giảng viên.",
-        ERR_DEVICE_BOUND_OTHER: "⛔ Điện thoại/trình duyệt này đã được gắn cố định với một MSSV khác ngay từ đầu kỳ. Không thể điểm danh hộ!",
-        ERR_CREDENTIAL_MISMATCH: "⚠️ Trình duyệt này chưa khớp với mã thiết bị đã đăng ký của MSSV {id}. Nếu bạn đổi điện thoại, hãy báo giảng viên bấm 🔓 Mở khóa.",
-        ERR_REG_LOCKED: "🔒 Giảng viên hiện đã khóa cổng đăng ký thiết bị mới.",
-        ERR_SESSION_CLOSED: "🔒 Cổng điểm danh của lớp này hiện đang đóng. Chờ giảng viên bấm Bắt đầu.",
-        ERR_INVALID_QR: "⚠️ Lớp đang bật chế độ QR Động 15s trên máy chiếu. Vui lòng bấm dòng 'Mở Camera Quét QR' bên dưới để quét màn hình của thầy.",
-        ERR_LOCATION_OUT_OF_RANGE: "📍 Vị trí ngoài phạm vi 100m (Bạn đang cách giảng viên {dist}m; cho phép tối đa {max}m, sai số GPS: ±{acc}m). Hãy tiến lại gần phòng học và bấm lại.",
-        ERR_GPS_UNAVAILABLE: "📍 Không lấy được vị trí GPS. Hãy bật Định vị (Location) cho trình duyệt Safari/Chrome rồi bấm lại.",
-        ERR_SERVER_BUSY: "⏳ Máy chủ đang xử lý nhiều bạn bấm cùng lúc. Đang tự động thử lại...",
-        ERR_UNAUTHORIZED: "⛔ Mã xác thực Giảng viên không đúng hoặc Mã PC 6 số đã hết hạn.",
-        DEVICE_RESET_OK: "🔓 Đã mở khóa thiết bị cho MSSV {id}. Sinh viên có thể đăng ký lại."
+        ONBOARD_CONFIRMED: "✅ Đã lưu: {name} ({id}).",
+        CONFIRMED_PRESENT: "✅ ĐIỂM DANH THÀNH CÔNG: CÓ MẶT ({time} • {dist}m)",
+        CONFIRMED_LATE: "🕒 ĐIỂM DANH THÀNH CÔNG: ĐI TRỄ ({time} • {dist}m)",
+        ALREADY_RECORDED: "ℹ️ Bạn đã điểm danh buổi này rồi ({status} lúc {time}).",
+        ERR_NOT_ON_ROSTER: "❌ Không tìm thấy MSSV {id} trong danh sách lớp.",
+        ERR_DEVICE_BOUND_OTHER: "⛔ Thiết bị này đã được gắn với một MSSV khác!",
+        ERR_CREDENTIAL_MISMATCH: "⚠️ Thiết bị/trình duyệt không khớp với lần đăng ký đầu của MSSV {id}. Hãy báo giảng viên mở khóa nếu bạn đổi máy.",
+        ERR_REG_LOCKED: "🔒 Giảng viên hiện đang khóa đăng ký thiết bị mới.",
+        ERR_SESSION_CLOSED: "🔒 Cổng điểm danh hiện đang đóng.",
+        ERR_INVALID_QR: "⚠️ Mã phiên không hợp lệ.",
+        ERR_LOCATION_OUT_OF_RANGE: "📍 Ngoài phạm vi lớp học (Cách {dist}m / Cho phép ≤ {max}m). Hãy lại gần hơn và thử lại.",
+        ERR_GPS_UNAVAILABLE: "📍 Vui lòng bật Định vị (GPS) trên trình duyệt rồi bấm lại.",
+        ERR_SERVER_BUSY: "⏳ Đang xử lý, vui lòng chờ...",
+        ERR_UNAUTHORIZED: "⛔ Mật khẩu phiên không đúng hoặc đã hết hạn trên Sheet. Hãy mở menu '🎓 Attendance Admin -> 4. View Teacher Pairing' trong Google Sheet để lấy mã mới.",
+        DEVICE_RESET_OK: "🔓 Đã mở khóa thiết bị cho MSSV {id}."
       },
       en: {
-        cam_modal_title: "📷 QR Scanner",
-        stu_course_title: "My Registered Courses",
-        stu_add_course_btn: "+ Link Course / ID",
+        cam_modal_title: "📷 Scan QR",
+        stu_course_title: "Student Info",
+        stu_add_course_btn: "Change / Link ID",
         stu_select_lecturer: "Lecturer:",
         stu_select_class: "Class:",
-        stu_no_course_desc: "Week 1 Setup (One-time): Enter your Student ID (MSSV) below to bind your phone to Lecturer Tran Nguyen Trung's class roster.",
+        stu_no_course_desc: "Enter your Student ID once to link your classes.",
         stu_scan_onboard_qr: "📷 Scan Onboarding QR",
-        stu_toggle_api_link: "⚙️ Change Lecturer URL or Scan Onboarding QR",
-        stu_api_url_label: "Lecturer Web App URL:",
-        stu_id_label: "Your Student ID (MSSV):",
-        privacy_notice: "🔒 Anti-Cheat & Privacy: Each phone (Safari on iOS / Chrome on Android) is bound to 1 Student ID all semester. GPS distance is calculated only when you tap Check In.",
-        stu_register_btn: "Verify Roster & Bind Device",
-        stu_checkin_title: "1-Tap GPS Check-In (≤ 100m)",
-        stu_checkin_desc: "When your lecturer opens attendance in class, enable Location (GPS) and tap the button below. No QR scan needed.",
-        shield_browser_label: "🌐 Official Browser (Single-App Lock):",
-        shield_device_label: "📱 Real Mobile Device (No PC Spoofing):",
-        shield_id_label: "🔒 Hardware Binding (1 Phone = 1 ID):",
-        btn_cancel_scan: "Close Camera",
-        stu_one_tap_checkin_btn: "📍 TAP TO CHECK IN NOW",
-        stu_scan_checkin_btn: "📷 Open Camera QR Scanner",
-        stu_camera_issue_link: "Lecturer using 15s Rotating QR or manual code? Tap here",
-        stu_submit_manual_qr: "Submit Code with GPS",
-        tea_login_title: "Lecturer Authentication",
-        tea_login_desc: "Scan your private Lecturer Pairing QR from your Google Sheet, or enter your 6-digit Temporary Classroom PC Code.",
-        tea_scan_pair_qr: "📷 Scan Lecturer Pairing QR",
-        tea_api_url_label: "Google Apps Script Web App URL:",
-        tea_token_label: "Master Key OR 6-Digit Temp PC Code:",
-        tea_session_type_label: "Device Type:",
-        tea_persist_phone: "Personal Phone / Laptop (Stay Signed In)",
-        tea_persist_pc: "Shared Classroom PC (Auto-Logout when tab closes)",
-        tea_login_btn: "Sign In to Teacher Mode",
-        tea_panel1_title: "1. Session Control (100m around Lecturer Phone)",
-        tea_fullscreen_btn: "🖥️ Projector View",
-        tea_select_class: "Active Class:",
-        tea_calibrate_gps_chk: "📍 Use this phone's live GPS as the 100m center on Start",
+        stu_toggle_api_link: "⚙️ Advanced Settings",
+        stu_api_url_label: "Web App URL:",
+        stu_id_label: "Student ID (MSSV):",
+        stu_register_btn: "Save & Bind Device",
+        stu_checkin_title: "Class Attendance",
+        btn_cancel_scan: "Close",
+        stu_one_tap_checkin_btn: "📍 TAP TO CHECK IN",
+        stu_scan_checkin_btn: "📷 Scan QR",
+        stu_submit_manual_qr: "Submit",
+        tea_login_title: "Lecturer Sign In",
+        tea_login_desc: "Enter the rotating 6-digit session code from your Google Sheet or your Master Key.",
+        tea_scan_pair_qr: "📷 Scan Pairing QR",
+        tea_api_url_label: "Web App URL (Cell B4):",
+        tea_token_label: "Rotating Sheet Code or Master Key:",
+        tea_session_type_label: "Session Mode:",
+        tea_persist_phone: "Personal Lecturer Device (Stay Signed In)",
+        tea_persist_pc: "Shared Classroom PC (Auto-Logout on close)",
+        tea_login_btn: "Sign In",
+        tea_panel1_title: "1. Attendance Control (100m Radius)",
+        tea_fullscreen_btn: "🖥️ Fullscreen",
+        tea_select_class: "Class:",
+        tea_calibrate_gps_chk: "📍 Set 100m center to this device's GPS on Start",
         tea_start_btn: "▶️ START ATTENDANCE",
         tea_extend_btn: "+2 Mins",
         tea_reopen_btn: "Reopen 5m",
         tea_close_btn: "Close Now",
-        tea_panel2_title: "2. Class Roster & 2-Phone Buddy-Punch Detector",
+        tea_panel2_title: "2. Class Roster & Spot-Check",
         tea_spot_check_btn: "🎲 Random Spot-Check",
         tea_show_hide_names: "👁️ Show/Hide",
-        tea_panel4_title: "3. Registration Gate & Sheet Admin",
-        tea_print_qr_btn: "🖨️ Print Classroom QR Poster",
-        tea_replace_qr_btn: "🔑 Replace Class Secret",
-        tea_rebuild_sheet_btn: "📊 Sync Sheet Grids",
+        tea_panel4_title: "3. Class Admin",
+        tea_print_qr_btn: "🖨️ Print QR",
+        tea_replace_qr_btn: "🔑 Rotate Secret",
+        tea_rebuild_sheet_btn: "📊 Sync to Sheet",
         tea_logout_btn: "Sign Out",
-        ios_guard_msg: "📱 Anti-Cheat Rule: Use native Safari on iPhone or native Chrome on Android. In-app browsers (Zalo/Messenger) and secondary browsers are blocked.",
-        ONBOARD_CONFIRMED: "✅ Device Bound! Student: {name} ({id}). Linked {count} class(es).",
-        CONFIRMED_PRESENT: "✅ ATTENDANCE CONFIRMED: PRESENT ({time} | {dist}m from lecturer)",
-        CONFIRMED_LATE: "🕒 ATTENDANCE CONFIRMED: LATE ({time} | {dist}m from lecturer)",
-        ALREADY_RECORDED: "ℹ️ Already recorded for this session ({status} at {time}).",
-        ERR_NOT_ON_ROSTER: "❌ Student ID {id} was not found in the lecturer's roster.",
-        ERR_DEVICE_BOUND_OTHER: "⛔ This phone/browser is already locked to another student ID. Buddy-punching is blocked!",
-        ERR_CREDENTIAL_MISMATCH: "⚠️ Browser token mismatch for Student ID {id}. Ask your lecturer to tap 'Reset Device'.",
-        ERR_REG_LOCKED: "🔒 New device registration is currently locked by the lecturer.",
-        ERR_SESSION_CLOSED: "🔒 Attendance is currently closed for this class.",
-        ERR_INVALID_QR: "⚠️ Lecturer enabled 15s Rotating QR mode. Please tap 'Open Camera QR Scanner' below to scan the projector.",
-        ERR_LOCATION_OUT_OF_RANGE: "📍 Outside 100m range ({dist}m away; max allowed: {max}m, GPS accuracy: ±{acc}m). Move closer and retry.",
-        ERR_GPS_UNAVAILABLE: "📍 Unable to read GPS location. Please allow Location permissions and retry.",
-        ERR_SERVER_BUSY: "⏳ Server is busy processing simultaneous check-ins. Retrying...",
-        ERR_UNAUTHORIZED: "⛔ Invalid or expired Lecturer credential.",
-        DEVICE_RESET_OK: "🔓 Device lock reset for Student ID {id}."
+        ONBOARD_CONFIRMED: "✅ Linked: {name} ({id}).",
+        CONFIRMED_PRESENT: "✅ PRESENT ({time} • {dist}m)",
+        CONFIRMED_LATE: "🕒 LATE ({time} • {dist}m)",
+        ALREADY_RECORDED: "ℹ️ Already recorded ({status} at {time}).",
+        ERR_NOT_ON_ROSTER: "❌ Student ID {id} not found on roster.",
+        ERR_DEVICE_BOUND_OTHER: "⛔ This device is already bound to another Student ID!",
+        ERR_CREDENTIAL_MISMATCH: "⚠️ Device mismatch for Student ID {id}. Ask your lecturer to reset your device lock.",
+        ERR_REG_LOCKED: "🔒 New device registration is locked.",
+        ERR_SESSION_CLOSED: "🔒 Attendance is currently closed.",
+        ERR_INVALID_QR: "⚠️ Invalid session token.",
+        ERR_LOCATION_OUT_OF_RANGE: "📍 Out of range ({dist}m away / max {max}m).",
+        ERR_GPS_UNAVAILABLE: "📍 Please allow Location (GPS) access and try again.",
+        ERR_SERVER_BUSY: "⏳ Processing, please wait...",
+        ERR_UNAUTHORIZED: "⛔ Invalid or expired session code. Refresh the code in Google Sheet via '🎓 Attendance Admin -> 4. View Teacher Pairing'.",
+        DEVICE_RESET_OK: "🔓 Device reset for {id}."
       }
     };
 
     /**
      * ========================================================================
-     * 2. SAFE STORAGE & STATE MANAGEMENT
+     * 2. STORAGE & SILENT HARDWARE FINGERPRINT
      * ========================================================================
      */
     function safeGetLocal(key, fallback = null) {
@@ -844,15 +831,11 @@
     }
 
     function safeSetLocal(key, val) {
-      try {
-        localStorage.setItem(key, val);
-      } catch (e) {}
+      try { localStorage.setItem(key, val); } catch (e) {}
     }
 
     function safeRemoveLocal(key) {
-      try {
-        localStorage.removeItem(key);
-      } catch (e) {}
+      try { localStorage.removeItem(key); } catch (e) {}
     }
 
     function safeGetSession(key, fallback = null) {
@@ -865,22 +848,44 @@
     }
 
     function safeSetSession(key, val) {
-      try {
-        sessionStorage.setItem(key, val);
-      } catch (e) {}
+      try { sessionStorage.setItem(key, val); } catch (e) {}
     }
 
     function safeRemoveSession(key) {
-      try {
-        sessionStorage.removeItem(key);
-      } catch (e) {}
+      try { sessionStorage.removeItem(key); } catch (e) {}
+    }
+
+    function normalizeApiUrl(url) {
+      const clean = String(url || '').trim();
+      if (!clean || LEGACY_LECTURER_APIS.includes(clean)) {
+        return DEFAULT_LECTURER_API;
+      }
+      return clean;
+    }
+
+    function migrateStoredUrls() {
+      const profiles = getStudentProfiles();
+      let changed = false;
+      Object.keys(profiles).forEach(k => {
+        if (LEGACY_LECTURER_APIS.includes(profiles[k].apiUrl)) {
+          profiles[k].apiUrl = DEFAULT_LECTURER_API;
+          changed = true;
+        }
+      });
+      if (changed) safeSetLocal('cc_student_profiles', JSON.stringify(profiles));
+
+      const tAuth = getTeacherAuth();
+      if (tAuth && LEGACY_LECTURER_APIS.includes(tAuth.apiUrl)) {
+        tAuth.apiUrl = DEFAULT_LECTURER_API;
+        safeSetLocal('cc_teacher_auth', JSON.stringify(tAuth));
+      }
     }
 
     let currentLang = safeGetLocal('cc_lang', 'vi');
+    let currentMode = 'STUDENT';
     let html5QrScanner = null;
     let activeScanPurpose = null;
 
-    // Teacher runtime state
     let teacherState = null;
     let teacherPollTimer = null;
     let teacherCountdownTimer = null;
@@ -888,7 +893,6 @@
     let showRosterNames = true;
     let checkInCooldownTimer = null;
 
-    // Hardware + Browser composite credential so 1 device stays consistent
     function getOrCreateDeviceCredential() {
       let cred = safeGetLocal('cc_device_cred', '');
       if (!cred || cred.length < 20) {
@@ -900,12 +904,37 @@
       return cred;
     }
 
-    function getStudentProfiles() {
+    function getHardwareFingerprint() {
       try {
-        return JSON.parse(safeGetLocal('cc_student_profiles', '{}'));
+        const scr = window.screen || {};
+        const nav = window.navigator || {};
+        let glRenderer = '';
+        try {
+          const canvas = document.createElement('canvas');
+          const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+          if (gl) {
+            const dbg = gl.getExtension('WEBGL_debug_renderer_info');
+            if (dbg) glRenderer = gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) || '';
+          }
+        } catch (e) {}
+
+        return [
+          nav.platform || '',
+          scr.width + 'x' + scr.height,
+          scr.colorDepth || '',
+          window.devicePixelRatio || 1,
+          nav.hardwareConcurrency || '',
+          nav.deviceMemory || '',
+          Intl.DateTimeFormat().resolvedOptions().timeZone || '',
+          glRenderer
+        ].join('|');
       } catch (e) {
-        return {};
+        return 'FP_DEFAULT';
       }
+    }
+
+    function getStudentProfiles() {
+      try { return JSON.parse(safeGetLocal('cc_student_profiles', '{}')); } catch (e) { return {}; }
     }
 
     function saveStudentProfile(instId, profileObj) {
@@ -926,7 +955,7 @@
     }
 
     function saveTeacherAuth(apiUrl, token, persistence) {
-      const payload = JSON.stringify({ apiUrl, token });
+      const payload = JSON.stringify({ apiUrl: normalizeApiUrl(apiUrl), token });
       if (persistence === 'LOCAL') {
         safeSetLocal('cc_teacher_auth', payload);
       } else {
@@ -934,115 +963,35 @@
       }
     }
 
-    /**
-     * ========================================================================
-     * 3. ANTI-CHEAT ENGINE (Browser Lock, Mobile Check, Mock GPS Detection)
-     * ========================================================================
-     */
     function evaluateStudentAntiCheat() {
       const ua = navigator.userAgent || '';
-      const isIos = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      const isAndroid = /Android/i.test(ua);
-
-      // 1. Detect In-App Browsers (Zalo, Messenger, FB, Instagram, TikTok, Line)
       const isInApp = /Zalo|FBAN|FBAV|Messenger|Instagram|BytedanceWebview|TikTok|Line\/|MicroMessenger/i.test(ua);
-
-      // 2. Enforce Single Official Browser per Mobile OS (Prevents opening Safari + Chrome + Brave on 1 phone for 3 friends)
-      let isSecondaryMobileBrowser = false;
-      let requiredBrowserName = 'Safari / Chrome';
-      if (isIos) {
-        requiredBrowserName = 'Safari (iOS)';
-        // On iOS, CriOS = Chrome, FxiOS = Firefox, EdgiOS = Edge, OPiOS = Opera, Coccoc = CocCoc
-        if (/CriOS|FxiOS|EdgiOS|OPiOS|coccoc/i.test(ua)) {
-          isSecondaryMobileBrowser = true;
-        }
-      } else if (isAndroid) {
-        requiredBrowserName = 'Google Chrome (Android)';
-        // On Android, block SamsungBrowser, Firefox, Opera, Brave, UC, CocCoc
-        if (/SamsungBrowser|Firefox|OPR\/|Opera|UCBrowser|coccoc|EdgA\//i.test(ua)) {
-          isSecondaryMobileBrowser = true;
-        }
-      }
-
-      // 3. Detect Mobile Touch Hardware vs Desktop PC/Laptop (Blocks Chrome DevTools F12 GPS Spoofing)
-      const hasTouch = (navigator.maxTouchPoints && navigator.maxTouchPoints >= 1) || ('ontouchstart' in window);
-      const isMobileDevice = (isIos || isAndroid) && hasTouch;
-      const isLecturerSignedIn = Boolean(getTeacherAuth());
-
       return {
         isInApp,
-        isSecondaryMobileBrowser,
-        requiredBrowserName,
-        isMobileDevice,
-        isLecturerSignedIn,
-        browserOk: !isInApp && !isSecondaryMobileBrowser,
-        deviceOk: isMobileDevice || isLecturerSignedIn
+        isSecondaryMobileBrowser: false,
+        browserOk: !isInApp,
+        deviceOk: true
       };
     }
 
-    function updateAntiCheatShieldUI() {
-      const check = evaluateStudentAntiCheat();
-      const brEl = document.getElementById('shield-browser-status');
-      const devEl = document.getElementById('shield-device-status');
-      const idEl = document.getElementById('shield-id-status');
-
-      if (check.isInApp) {
-        brEl.className = 'badge-err';
-        brEl.textContent = currentLang === 'vi' ? '⛔ Đang mở trong Zalo/FB' : '⛔ In-App Browser Blocked';
-      } else if (check.isSecondaryMobileBrowser) {
-        brEl.className = 'badge-err';
-        brEl.textContent = currentLang === 'vi' ? `⛔ Hãy mở bằng ${check.requiredBrowserName}` : `⛔ Use ${check.requiredBrowserName}`;
-      } else {
-        brEl.className = 'badge-ok';
-        brEl.textContent = currentLang === 'vi' ? `✅ Chuẩn (${check.requiredBrowserName})` : `✅ Verified (${check.requiredBrowserName})`;
-      }
-
-      if (check.isMobileDevice) {
-        devEl.className = 'badge-ok';
-        devEl.textContent = currentLang === 'vi' ? '✅ Điện thoại cảm ứng' : '✅ Mobile Touch Sensor';
-      } else if (check.isLecturerSignedIn) {
-        devEl.className = 'badge-warn';
-        devEl.textContent = currentLang === 'vi' ? '👨‍🏫 Máy tính Giảng viên (Test)' : '👨‍🏫 Lecturer PC Test Mode';
-      } else {
-        devEl.className = 'badge-warn';
-        devEl.textContent = currentLang === 'vi' ? '⚠️ Máy tính/PC (Chỉ dùng ĐT trên lớp)' : '⚠️ Desktop Detected (Use Phone in Class)';
-      }
-
-      const profiles = getStudentProfiles();
-      const activeInst = safeGetLocal('cc_active_inst', '');
-      const p = profiles[activeInst] || Object.values(profiles)[0];
-      if (p && p.studentId) {
-        idEl.className = 'badge-ok';
-        idEl.textContent = `🔒 ${p.studentId} (${p.fullName})`;
-      } else {
-        idEl.className = 'badge-warn';
-        idEl.textContent = currentLang === 'vi' ? 'Chưa đăng ký MSSV' : 'Unbound';
-      }
-    }
-
     function inspectGpsForSpoofing(pos) {
-      if (!pos || !pos.coords) return { suspicious: true, reason: 'Missing GPS coords' };
+      if (!pos || !pos.coords) return { suspicious: true, reason: 'No GPS' };
       const c = pos.coords;
-      // 1. Accuracy must be positive and realistic
       if (typeof c.accuracy !== 'number' || c.accuracy <= 0) {
-        return { suspicious: true, reason: 'Invalid accuracy <= 0m' };
-      }
-      // 2. Many cheap Android/PC mock GPS injectors hardcode exact integer accuracy = 1 or 5 with null altitude & 0 speed
-      const isExactMockInt = (c.accuracy === 1 || c.accuracy === 2) && c.altitude === null && c.altitudeAccuracy === null;
-      if (isExactMockInt) {
-        return { suspicious: true, reason: 'Mock GPS signature (accuracy=' + c.accuracy + 'm)' };
+        return { suspicious: true, reason: 'Invalid accuracy' };
       }
       return { suspicious: false, reason: '' };
     }
 
     /**
      * ========================================================================
-     * 4. INITIALIZATION & DEEP LINK PARSING
+     * 3. INITIALIZATION
      * ========================================================================
      */
     window.addEventListener('DOMContentLoaded', () => {
       getOrCreateDeviceCredential();
-      // Pre-fill Lecturer Web App URL from Master Sheet
+      migrateStoredUrls();
+
       document.getElementById('inp-onboard-api').value = DEFAULT_LECTURER_API;
       document.getElementById('inp-tea-api').value = DEFAULT_LECTURER_API;
 
@@ -1050,23 +999,23 @@
       checkIosStandaloneNotice();
       handleUrlDeepLinks();
       renderStudentCourseSelectors();
-      updateAntiCheatShieldUI();
     });
 
     function checkIosStandaloneNotice() {
-      const check = evaluateStudentAntiCheat();
       const banner = document.getElementById('ios-install-banner');
+      if (currentMode === 'TEACHER') {
+        banner.classList.add('hidden');
+        return;
+      }
+      const check = evaluateStudentAntiCheat();
       if (!check.browserOk) {
         document.getElementById('t-ios-guard').textContent =
           currentLang === 'vi'
-            ? `⛔ PHÁT HIỆN TRÌNH DUYỆT PHỤ / IN-APP: Để chống 1 máy mở nhiều trình duyệt điểm danh hộ, hệ thống bắt buộc dùng ${check.requiredBrowserName}. Vui lòng copy link mở sang ${check.requiredBrowserName}!`
-            : `⛔ SECONDARY / IN-APP BROWSER BLOCKED: Please open this link in ${check.requiredBrowserName} so your device token stays locked.`;
-        banner.className = 'alert alert-err';
+            ? '⛔ Vui lòng mở bằng trình duyệt chính (Safari, Chrome, Cốc Cốc, Edge), không mở trực tiếp trong Zalo/Messenger.'
+            : '⛔ Please open in Safari, Chrome, CocCoc, or Edge (not inside Zalo/Messenger).';
         banner.classList.remove('hidden');
       } else {
-        document.getElementById('t-ios-guard').textContent = I18N[currentLang].ios_guard_msg;
-        banner.className = 'alert alert-warn';
-        banner.classList.remove('hidden');
+        banner.classList.add('hidden');
       }
     }
 
@@ -1079,9 +1028,8 @@
         try {
           const decoded = JSON.parse(atob(onboardB64.replace(/-/g, '+').replace(/_/g, '/')));
           if (decoded.api) {
-            document.getElementById('inp-onboard-api').value = decoded.api;
+            document.getElementById('inp-onboard-api').value = normalizeApiUrl(decoded.api);
             document.getElementById('box-add-course').classList.remove('hidden');
-            showStatus('ℹ️ Đã nạp cấu hình khóa học của ' + (decoded.name || 'Giảng viên') + '. Hãy nhập MSSV của bạn bên dưới.', 'warn');
           }
         } catch (e) {}
       } else if (pairB64) {
@@ -1089,7 +1037,7 @@
           const decoded = JSON.parse(atob(pairB64.replace(/-/g, '+').replace(/_/g, '/')));
           if (decoded.api && decoded.tkey) {
             switchMode('TEACHER');
-            document.getElementById('inp-tea-api').value = decoded.api;
+            document.getElementById('inp-tea-api').value = normalizeApiUrl(decoded.api);
             document.getElementById('inp-tea-token').value = decoded.tkey;
             loginTeacher();
           }
@@ -1099,13 +1047,14 @@
 
     /**
      * ========================================================================
-     * 5. TRANSPORT LAYER (CORS-Safe text/plain POST with Auto-Retry)
+     * 4. TRANSPORT LAYER
      * ========================================================================
      */
     async function callBackend(apiUrl, payload, retries = 2) {
+      const targetUrl = normalizeApiUrl(apiUrl);
       for (let attempt = 0; attempt <= retries; attempt++) {
         try {
-          const response = await fetch(apiUrl, {
+          const response = await fetch(targetUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: JSON.stringify(payload),
@@ -1129,7 +1078,7 @@
 
     /**
      * ========================================================================
-     * 6. STUDENT WORKFLOWS (Onboarding & 1-Button GPS Check-In)
+     * 5. STUDENT WORKFLOWS (MINIMALIST & FAST)
      * ========================================================================
      */
     function renderStudentCourseSelectors() {
@@ -1143,7 +1092,6 @@
         hasBox.classList.add('hidden');
         noBox.classList.remove('hidden');
         addBox.classList.remove('hidden');
-        updateAntiCheatShieldUI();
         return;
       }
 
@@ -1158,7 +1106,6 @@
       }).join('');
 
       onStudentInstChange();
-      updateAntiCheatShieldUI();
     }
 
     function onStudentInstChange() {
@@ -1179,8 +1126,7 @@
       };
 
       document.getElementById('stu-bound-info').textContent =
-        `👤 Sinh viên đã khóa máy: ${p.fullName} (MSSV: ${p.studentId})`;
-      updateAntiCheatShieldUI();
+        `👤 ${p.fullName} — MSSV: ${p.studentId}`;
     }
 
     function toggleAddCourseBox() {
@@ -1194,40 +1140,31 @@
     async function submitStudentOnboarding() {
       const check = evaluateStudentAntiCheat();
       if (!check.browserOk) {
-        showStatus(
-          currentLang === 'vi'
-            ? `⛔ Chặn đăng ký: Bạn đang mở bằng trình duyệt phụ hoặc Zalo/Messenger. Hãy mở bằng trình duyệt chính (${check.requiredBrowserName}) để đăng ký MSSV!`
-            : `⛔ Registration blocked: Please open this page in ${check.requiredBrowserName}.`,
-          'err'
-        );
+        showStatus('⛔ Vui lòng mở bằng trình duyệt chính (Safari, Chrome, Cốc Cốc, Edge), không mở trong Zalo/Messenger.', 'err');
         return;
       }
 
-      const apiUrl = (document.getElementById('inp-onboard-api').value.trim() || DEFAULT_LECTURER_API);
+      const apiUrl = normalizeApiUrl(document.getElementById('inp-onboard-api').value);
       const studentId = document.getElementById('inp-student-id').value.trim().toUpperCase();
 
-      if (!apiUrl.startsWith('https://script.google.com/')) {
-        showStatus('⚠️ URL Web App không hợp lệ.', 'err');
-        return;
-      }
       if (!studentId) {
-        showStatus('⚠️ Vui lòng nhập Mã số sinh viên (MSSV) của bạn.', 'err');
+        showStatus('⚠️ Vui lòng nhập Mã số sinh viên (MSSV).', 'err');
         return;
       }
 
-      showStatus('⏳ Đang kiểm tra danh sách lớp và khóa thiết bị...', 'warn');
+      showStatus('⏳ Đang xác thực MSSV...', 'warn');
 
       const pingRes = await callBackend(apiUrl, { action: 'PING' });
       if (!pingRes.ok) {
-        showStatus('❌ Không kết nối được tới Google Sheet: ' + (pingRes.message || pingRes.code), 'err');
+        showStatus('❌ Không kết nối được tới máy chủ.', 'err');
         return;
       }
 
-      const cred = getOrCreateDeviceCredential();
       const res = await callBackend(apiUrl, {
         action: 'STUDENT_ONBOARD',
         studentId: studentId,
-        credential: cred,
+        credential: getOrCreateDeviceCredential(),
+        deviceFp: getHardwareFingerprint(),
         clientMeta: check
       });
 
@@ -1254,7 +1191,6 @@
       }), 'success');
     }
 
-    // 1-TAP GPS CHECK-IN HANDLER (No Camera Required!)
     async function handleOneTapGpsCheckIn() {
       const profiles = getStudentProfiles();
       const instId = document.getElementById('sel-student-inst').value;
@@ -1262,17 +1198,11 @@
       const profile = profiles[instId];
 
       if (!profile || !classId) {
-        showStatus(
-          currentLang === 'vi'
-            ? '⚠️ Bạn chưa liên kết MSSV! Hãy nhập MSSV ở mục "Khóa học đã đăng ký" phía trên trước.'
-            : '⚠️ Please register your Student ID in the box above first.',
-          'err'
-        );
+        showStatus('⚠️ Vui lòng nhập và lưu MSSV trước.', 'err');
         document.getElementById('box-add-course').classList.remove('hidden');
         return;
       }
 
-      // Resolve automatic class token for 1-Tap Check-In (works with both v2.1 static secret & v2.2 BUTTON_GPS_CHECKIN)
       const enrolledItem = (profile.enrolledClasses || []).find(c => c.classId === classId);
       const autoToken = (enrolledItem && enrolledItem.activeQrSecret)
         || KNOWN_CLASS_SECRETS[classId]
@@ -1288,29 +1218,13 @@
       const profile = profiles[instId];
 
       if (!profile || !classId) {
-        showStatus('⚠️ Vui lòng đăng ký MSSV trước khi điểm danh.', 'err');
+        showStatus('⚠️ Vui lòng lưu MSSV trước khi điểm danh.', 'err');
         return;
       }
 
-      // 1. Run Anti-Cheat Browser & Device Verification
       const check = evaluateStudentAntiCheat();
       if (!check.browserOk) {
-        showStatus(
-          currentLang === 'vi'
-            ? `⛔ CHẶN GIAN LẬN: Không được điểm danh trên trình duyệt phụ hoặc Zalo/Messenger. Hãy mở đúng trình duyệt ${check.requiredBrowserName} đã đăng ký!`
-            : `⛔ ANTI-CHEAT: Please open in ${check.requiredBrowserName} to check in.`,
-          'err'
-        );
-        return;
-      }
-
-      if (!check.deviceOk) {
-        showStatus(
-          currentLang === 'vi'
-            ? '⛔ CHẶN FAKE GPS TRÊN MÁY TÍNH: Sinh viên bắt buộc bấm điểm danh trên Điện thoại di động thật tại lớp!'
-            : '⛔ DESKTOP BLOCKED: Students must check in using their mobile phone in class.',
-          'err'
-        );
+        showStatus('⛔ Không điểm danh trong Zalo/Messenger. Hãy mở bằng trình duyệt đã đăng ký!', 'err');
         return;
       }
 
@@ -1320,13 +1234,8 @@
 
       btn.disabled = true;
       pill.className = 'badge-warn';
-      pill.textContent = currentLang === 'vi' ? 'Đang đo GPS...' : 'Reading GPS...';
-      showStatus(
-        currentLang === 'vi'
-          ? '📍 Đang bật định vị GPS chính xác cao & kiểm tra khoảng cách ≤ 100m với điện thoại giảng viên...'
-          : '📍 Acquiring high-accuracy GPS & checking ≤ 100m distance from lecturer...',
-        'warn'
-      );
+      pill.textContent = currentLang === 'vi' ? 'Đang định vị...' : 'Locating...';
+      showStatus(currentLang === 'vi' ? '📍 Đang kiểm tra vị trí...' : '📍 Checking location...', 'warn');
 
       let pos;
       try {
@@ -1339,26 +1248,14 @@
         return;
       }
 
-      // 2. Check for Mock GPS Spoofing signatures
       const spoofCheck = inspectGpsForSpoofing(pos);
       if (spoofCheck.suspicious) {
         btn.disabled = false;
         pill.className = 'badge-err';
-        pill.textContent = 'Nghi Fake GPS';
-        showStatus(
-          currentLang === 'vi'
-            ? `⛔ Phát hiện tín hiệu định vị giả lập (${spoofCheck.reason}). Vui lòng tắt phần mềm Fake GPS và thử lại!`
-            : `⛔ Mock GPS location detected (${spoofCheck.reason}). Disable mock location apps and retry.`,
-          'err'
-        );
+        pill.textContent = 'Lỗi vị trí';
+        showStatus('⛔ Tín hiệu GPS không hợp lệ.', 'err');
         return;
       }
-
-      const accMeters = Math.round(pos.coords.accuracy || 0);
-      tele.classList.remove('hidden');
-      tele.textContent = currentLang === 'vi'
-        ? `📡 Đã khóa vệ tinh GPS (Độ chính xác: ±${accMeters}m) — Đang đối chiếu với vị trí Giảng viên...`
-        : `📡 GPS acquired (Accuracy: ±${accMeters}m) — Verifying with Lecturer position...`;
 
       const requestId = 'REQ_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
       const payload = {
@@ -1366,6 +1263,7 @@
         studentId: profile.studentId,
         classId: classId,
         credential: getOrCreateDeviceCredential(),
+        deviceFp: getHardwareFingerprint(),
         qrPayload: qrString || 'BUTTON_GPS_CHECKIN',
         requestId: requestId,
         lat: pos.coords.latitude,
@@ -1373,8 +1271,8 @@
         accuracy: pos.coords.accuracy,
         clientMeta: {
           isInApp: check.isInApp,
-          isSecondaryMobileBrowser: check.isSecondaryMobileBrowser,
-          deviceOk: check.deviceOk,
+          isSecondaryMobileBrowser: false,
+          deviceOk: true,
           mockGpsSuspect: spoofCheck.suspicious,
           mockReason: spoofCheck.reason
         }
@@ -1386,17 +1284,15 @@
       if (res.ok && res.receipt) {
         const r = res.receipt;
         pill.className = 'badge-ok';
-        pill.textContent = `Cách GV ${r.distanceMeters}m`;
-        tele.textContent = currentLang === 'vi'
-          ? `✅ Khoảng cách hợp lệ: Cách điện thoại giảng viên ${r.distanceMeters}m (Cho phép ≤ 100m | Sai số GPS ±${accMeters}m)`
-          : `✅ Valid distance: ${r.distanceMeters}m from lecturer (Allowed ≤ 100m | GPS ±${accMeters}m)`;
+        pill.textContent = `${r.distanceMeters}m`;
+        tele.classList.remove('hidden');
+        tele.textContent = `📍 Cách giảng viên ${r.distanceMeters}m`;
         showStatus(formatServerMessage(res.code, {
           status: r.status,
           time: r.time,
           dist: r.distanceMeters
         }), 'success');
       } else if (res.code === 'ERR_NETWORK') {
-        showStatus('⏳ Kết nối chập chờn. Đang kiểm tra lại biên lai điểm danh...', 'warn');
         const checkRec = await callBackend(profile.apiUrl, {
           action: 'CHECK_RECEIPT',
           requestId: requestId,
@@ -1404,7 +1300,7 @@
         }, 1);
         if (checkRec.ok && checkRec.receipt) {
           pill.className = 'badge-ok';
-          pill.textContent = `Cách GV ${checkRec.receipt.distanceMeters}m`;
+          pill.textContent = `${checkRec.receipt.distanceMeters}m`;
           showStatus(formatServerMessage('CONFIRMED_' + (checkRec.receipt.status === 'P' ? 'PRESENT' : 'LATE'), {
             time: checkRec.receipt.time,
             dist: checkRec.receipt.distanceMeters
@@ -1412,18 +1308,11 @@
         } else {
           pill.className = 'badge-err';
           pill.textContent = 'Lỗi mạng';
-          showStatus('❌ Lỗi mạng. Vui lòng bấm nút Điểm danh lại.', 'err');
+          showStatus('❌ Lỗi kết nối, vui lòng bấm lại.', 'err');
         }
       } else {
         pill.className = 'badge-err';
-        if (res.code === 'ERR_LOCATION_OUT_OF_RANGE' && res.params) {
-          pill.textContent = `Quá xa (${res.params.dist}m)`;
-          tele.textContent = currentLang === 'vi'
-            ? `❌ Bạn đang cách giảng viên ${res.params.dist}m (Yêu cầu ≤ ${res.params.max}m)`
-            : `❌ Distance ${res.params.dist}m exceeds ${res.params.max}m limit`;
-        } else {
-          pill.textContent = 'Chưa hợp lệ';
-        }
+        pill.textContent = (res.code === 'ERR_LOCATION_OUT_OF_RANGE' && res.params) ? `${res.params.dist}m` : 'Chưa đạt';
         showStatus(formatServerMessage(res.code, res.params, res.message), 'err');
       }
     }
@@ -1440,9 +1329,7 @@
           btn.disabled = false;
           btn.textContent = I18N[currentLang].stu_one_tap_checkin_btn;
         } else {
-          btn.textContent = currentLang === 'vi'
-            ? `⏳ Chờ ${rem}s để bấm lại...`
-            : `⏳ Wait ${rem}s...`;
+          btn.textContent = `⏳ ${rem}s...`;
         }
       }, 1000);
     }
@@ -1458,7 +1345,7 @@
 
     /**
      * ========================================================================
-     * 7. CAMERA QR SCANNER (Onboarding, Teacher Pairing, or Backup Rotating QR)
+     * 6. CAMERA QR SCANNER
      * ========================================================================
      */
     async function startCameraScanner(purpose) {
@@ -1483,7 +1370,7 @@
         );
       } catch (err) {
         modalBox.classList.add('hidden');
-        showStatus('📷 Không mở được Camera. Nếu bạn chỉ điểm danh hàng ngày, hãy bấm trực tiếp nút "📍 BẤM ĐỂ ĐIỂM DANH NGAY" (không cần Camera).', 'warn');
+        showStatus('📷 Không mở được Camera.', 'warn');
       }
     }
 
@@ -1501,13 +1388,13 @@
           const url = new URL(text);
           if (url.searchParams.get('onboard')) {
             const obj = JSON.parse(atob(url.searchParams.get('onboard').replace(/-/g, '+').replace(/_/g, '/')));
-            document.getElementById('inp-onboard-api').value = obj.api || DEFAULT_LECTURER_API;
-            showStatus('✅ Đã quét mã Khóa học của ' + (obj.name || 'Giảng viên') + '. Hãy nhập MSSV bên dưới.', 'success');
+            document.getElementById('inp-onboard-api').value = normalizeApiUrl(obj.api);
+            showStatus('✅ Đã nạp cấu hình khóa học. Hãy nhập MSSV.', 'success');
             return;
           }
           if (url.searchParams.get('pair')) {
             const obj = JSON.parse(atob(url.searchParams.get('pair').replace(/-/g, '+').replace(/_/g, '/')));
-            document.getElementById('inp-tea-api').value = obj.api || DEFAULT_LECTURER_API;
+            document.getElementById('inp-tea-api').value = normalizeApiUrl(obj.api);
             document.getElementById('inp-tea-token').value = obj.tkey || '';
             loginTeacher();
             return;
@@ -1518,12 +1405,12 @@
       try {
         const obj = JSON.parse(text);
         if (obj.type === 'ONBOARD' && obj.api) {
-          document.getElementById('inp-onboard-api').value = obj.api;
-          showStatus('✅ Đã quét mã Khóa học của ' + (obj.name || 'Giảng viên') + '. Hãy nhập MSSV bên dưới.', 'success');
+          document.getElementById('inp-onboard-api').value = normalizeApiUrl(obj.api);
+          showStatus('✅ Đã nạp cấu hình khóa học. Hãy nhập MSSV.', 'success');
           return;
         }
         if (obj.type === 'TEACHER_PAIR' && obj.api && obj.tkey) {
-          document.getElementById('inp-tea-api').value = obj.api;
+          document.getElementById('inp-tea-api').value = normalizeApiUrl(obj.api);
           document.getElementById('inp-tea-token').value = obj.tkey;
           loginTeacher();
           return;
@@ -1533,26 +1420,39 @@
       if (purpose === 'CHECKIN') {
         executeStudentCheckIn(text);
       } else {
-        showStatus('⚠️ Mã QR không đúng định dạng cho thao tác này.', 'warn');
+        showStatus('⚠️ Mã QR không hợp lệ.', 'warn');
       }
     }
 
     /**
      * ========================================================================
-     * 8. TEACHER MODE CONTROLLERS & ANTI-2-PHONE DETECTOR
+     * 7. LECTURER MODE CONTROLLERS (SHEET-BASED ROTATING PASSWORD)
      * ========================================================================
      */
+    function toggleTeacherApiBox() {
+      document.getElementById('box-tea-api-advanced').classList.toggle('hidden');
+    }
+
+    function resetToDefaultLecturerApi() {
+      document.getElementById('inp-tea-api').value = DEFAULT_LECTURER_API;
+      safeRemoveLocal('cc_teacher_auth');
+      safeRemoveSession('cc_teacher_auth');
+      showStatus('✅ Đã đặt lại URL mặc định.', 'success');
+    }
+
     async function loginTeacher() {
-      const apiUrl = (document.getElementById('inp-tea-api').value.trim() || DEFAULT_LECTURER_API);
+      const apiUrl = normalizeApiUrl(document.getElementById('inp-tea-api').value);
       const token = document.getElementById('inp-tea-token').value.trim();
       const persistence = document.getElementById('sel-tea-persistence').value;
 
+      document.getElementById('inp-tea-api').value = apiUrl;
+
       if (!apiUrl || !token) {
-        showStatus('⚠️ Vui lòng nhập Master Key hoặc Mã PC 6 số.', 'err');
+        showStatus('⚠️ Vui lòng nhập mật khẩu phiên từ Google Sheet.', 'err');
         return;
       }
 
-      showStatus('⏳ Đang xác thực quyền Giảng viên...', 'warn');
+      showStatus('⏳ Đang kiểm tra mật khẩu phiên với Google Sheet...', 'warn');
       const res = await callBackend(apiUrl, {
         action: 'TEACHER_AUTH',
         teacherToken: token
@@ -1569,16 +1469,15 @@
       hideStatus();
       applyTeacherState(res);
       startTeacherPolling();
-      updateAntiCheatShieldUI();
     }
 
     function logoutTeacher() {
       safeRemoveLocal('cc_teacher_auth');
       safeRemoveSession('cc_teacher_auth');
+      document.getElementById('inp-tea-token').value = '';
       stopTeacherPolling();
       document.getElementById('box-teacher-dashboard').classList.add('hidden');
       document.getElementById('card-teacher-login').classList.remove('hidden');
-      updateAntiCheatShieldUI();
     }
 
     async function refreshTeacherState() {
@@ -1590,7 +1489,12 @@
         teacherToken: auth.token,
         classId: selClass
       }, 1);
-      if (res.ok) applyTeacherState(res);
+      if (res.ok) {
+        applyTeacherState(res);
+      } else if (res.code === 'ERR_UNAUTHORIZED') {
+        logoutTeacher();
+        showStatus('🔒 Mã phiên trên Sheet đã thay đổi hoặc hết hạn. Vui lòng đăng nhập lại bằng mã mới trên Sheet.', 'warn');
+      }
     }
 
     function applyTeacherState(state) {
@@ -1602,7 +1506,6 @@
         `<option value="${escapeHtml(c.classId)}" ${c.classId === currentVal ? 'selected' : ''}>${escapeHtml(c.classId)} — ${escapeHtml(c.className)}</option>`
       ).join('');
 
-      // Keep local secret map updated so 1-button check-in always knows active static secret
       (state.classes || []).forEach(c => {
         if (c.classId && c.activeQrSecret) {
           KNOWN_CLASS_SECRETS[c.classId] = c.activeQrSecret;
@@ -1614,25 +1517,56 @@
 
       if (activeCfg) {
         document.getElementById('btn-reg-gate-toggle').textContent =
-          `Cổng Đăng ký Thiết bị: ${activeCfg.regOpen ? 'MỞ ✅' : 'KHÓA 🔒'}`;
+          `Đăng ký Thiết bị Mới: ${activeCfg.regOpen ? 'MỞ ✅' : 'KHÓA 🔒'}`;
         document.getElementById('poster-class-title').textContent =
           `${activeCfg.classId} — ${activeCfg.className}`;
+
+        const dispLat = (ses && ses.roomLat) ? ses.roomLat : activeCfg.roomLat;
+        const dispLng = (ses && ses.roomLng) ? ses.roomLng : activeCfg.roomLng;
+        const dispRad = (ses && ses.radiusMeters) ? ses.radiusMeters : (activeCfg.radiusMeters || 100);
+        document.getElementById('tea-gps-coords-badge').textContent =
+          `🎯 Tâm: ${Number(dispLat).toFixed(5)}, ${Number(dispLng).toFixed(5)} (≤ ${dispRad}m)`;
       }
 
       const roster = state.roster || [];
       const pCount = roster.filter(r => r.status === 'P').length;
       const lCount = roster.filter(r => r.status === 'L').length;
       const eCount = roster.filter(r => r.status === 'E').length;
-      document.getElementById('tea-live-count').textContent = `${pCount + lCount} / ${roster.length} Đã điểm danh`;
-      document.getElementById('tea-live-breakdown').textContent = `Có mặt (P): ${pCount} | Đi trễ (L): ${lCount} | Phép (E): ${eCount}`;
+      document.getElementById('tea-live-count').textContent = `${pCount + lCount} / ${roster.length} Có mặt`;
+      document.getElementById('tea-live-breakdown').textContent = `P: ${pCount} | L: ${lCount} | E: ${eCount}`;
 
       const qrMode = ses ? ses.qrMode : 'STATIC';
-      document.getElementById('btn-qr-mode-toggle').textContent =
-        qrMode === 'STATIC' ? 'Chế độ: 1 NÚT BẤM + GPS (STATIC)' : 'Chế độ: BẮT BUỘC QUÉT QR ĐỘNG 15s';
       renderClassroomQr(activeCfg, qrMode);
-
       setupTeacherCountdown(ses);
       renderTeacherRoster();
+    }
+
+    async function teacherCalibrateRoomGpsNow() {
+      const auth = getTeacherAuth();
+      const classId = document.getElementById('sel-tea-class').value;
+      if (!auth || !classId) return;
+
+      showStatus('📍 Đang lấy tọa độ GPS của máy bạn làm Tâm 100m...', 'warn');
+      try {
+        const pos = await getAccuratePosition();
+        const res = await callBackend(auth.apiUrl, {
+          action: 'TEACHER_START_SESSION',
+          teacherToken: auth.token,
+          classId: classId,
+          usePhoneGps: true,
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude,
+          qrMode: 'STATIC'
+        });
+        if (res.ok) {
+          applyTeacherState(res);
+          showStatus(`✅ Đã đặt Tâm 100m tại (${pos.coords.latitude.toFixed(5)}, ${pos.coords.longitude.toFixed(5)})!`, 'success');
+        } else {
+          showStatus(res.message || res.code, 'err');
+        }
+      } catch (e) {
+        showStatus('📍 Không lấy được GPS. Hãy cho phép quyền Vị trí trên trình duyệt.', 'err');
+      }
     }
 
     function setupTeacherCountdown(ses) {
@@ -1641,7 +1575,7 @@
       const timerEl = document.getElementById('tea-countdown');
 
       if (!ses || !ses.isOpen) {
-        badge.textContent = '🔒 PHIÊN ĐIỂM DANH ĐANG ĐÓNG';
+        badge.textContent = '🔒 ĐANG ĐÓNG';
         badge.style.color = '#dc2626';
         timerEl.textContent = '00:00';
         return;
@@ -1650,7 +1584,7 @@
       const updateTick = () => {
         const now = Date.now();
         if (now > ses.closesAtMs) {
-          badge.textContent = '🔒 ĐÃ HẾT GIỜ ĐIỂM DANH';
+          badge.textContent = '🔒 HẾT GIỜ';
           badge.style.color = '#dc2626';
           timerEl.textContent = '00:00';
           clearInterval(teacherCountdownTimer);
@@ -1658,12 +1592,12 @@
         }
         if (now <= ses.presentUntilMs) {
           const remSec = Math.max(0, Math.floor((ses.presentUntilMs - now) / 1000));
-          badge.textContent = '🟢 ĐANG MỞ — CỬA SỔ CÓ MẶT (P)';
+          badge.textContent = '🟢 ĐANG MỞ (CÓ MẶT)';
           badge.style.color = '#15803d';
           timerEl.textContent = formatMmSs(remSec);
         } else {
           const remSec = Math.max(0, Math.floor((ses.closesAtMs - now) / 1000));
-          badge.textContent = '🟡 ĐANG MỞ — CỬA SỔ ĐI TRỄ (L)';
+          badge.textContent = '🟡 ĐANG MỞ (ĐI TRỄ)';
           badge.style.color = '#b45309';
           timerEl.textContent = formatMmSs(remSec);
         }
@@ -1680,21 +1614,15 @@
       const drawQr = async () => {
         container.innerHTML = '';
         let payloadText = classCfg.activeQrSecret;
-
         if (qrMode === 'ROTATING') {
           const bucket = Math.floor(Date.now() / 15000);
           const tok = (await sha256Browser(classCfg.activeQrSecret + '|' + bucket)).slice(0, 12);
-          payloadText = JSON.stringify({
-            cid: classCfg.classId,
-            mode: 'ROTATING',
-            tok: tok
-          });
+          payloadText = JSON.stringify({ cid: classCfg.classId, mode: 'ROTATING', tok: tok });
         }
-
         new QRCode(container, {
           text: payloadText,
-          width: 210,
-          height: 210,
+          width: 160,
+          height: 160,
           colorDark: '#0f172a',
           colorLight: '#ffffff',
           correctLevel: QRCode.CorrectLevel.M
@@ -1714,7 +1642,7 @@
 
       let lat = 0, lng = 0;
       if (usePhoneGps) {
-        showStatus('📍 Đang lấy tọa độ GPS từ thiết bị của Giảng viên để làm tâm 100m...', 'warn');
+        showStatus('📍 Đang lấy tọa độ GPS làm tâm 100m...', 'warn');
         try {
           const pos = await getAccuratePosition();
           lat = pos.coords.latitude;
@@ -1722,8 +1650,8 @@
         } catch (e) {
           openAppModal(
             'Không lấy được GPS mới',
-            'Thiết bị này chưa bật quyền Vị trí (GPS). Bạn có muốn mở phiên điểm danh bằng tọa độ phòng đã lưu sẵn trong Google Sheet không?',
-            'Mở bằng tọa độ lưu sẵn',
+            'Mở phiên điểm danh bằng tọa độ phòng đã lưu sẵn trên Sheet?',
+            'Mở ngay',
             async () => {
               await executeStartSessionRequest(auth, classId, false, 0, 0);
             }
@@ -1736,8 +1664,7 @@
     }
 
     async function executeStartSessionRequest(auth, classId, useGps, lat, lng) {
-      showStatus('⏳ Đang mở cổng điểm danh cho lớp ' + classId + '...', 'warn');
-      // Default to STATIC mode so students can use 1-Tap GPS Check-In without scanning QR
+      showStatus('⏳ Đang mở phiên điểm danh...', 'warn');
       const res = await callBackend(auth.apiUrl, {
         action: 'TEACHER_START_SESSION',
         teacherToken: auth.token,
@@ -1774,7 +1701,6 @@
       await teacherControlSession('SET_QR_MODE', { qrMode: next });
     }
 
-    // Parse HH:mm:ss string to seconds since midnight for Co-Checkin Buddy-Punch detection
     function parseTimeSec(timeStr) {
       if (!timeStr) return null;
       const m = String(timeStr).match(/(\d{1,2}):(\d{2})(?::(\d{2}))?/);
@@ -1782,7 +1708,6 @@
       return parseInt(m[1], 10) * 3600 + parseInt(m[2], 10) * 60 + parseInt(m[3] || '0', 10);
     }
 
-    // Detect clusters of students checking in within <= 4 seconds of each other
     function detectCoCheckInSuspects(roster) {
       const checked = (roster || [])
         .filter(s => (s.status === 'P' || s.status === 'L') && s.time)
@@ -1793,16 +1718,16 @@
       const suspectMap = {};
       (roster || []).forEach(s => {
         if (s.source && String(s.source).startsWith('SUSPECT_WITH_')) {
-          const partnerId = String(s.source).replace('SUSPECT_WITH_', '');
-          suspectMap[s.studentId] = `Server cảnh báo bấm cùng lúc/vị trí với MSSV ${partnerId}`;
+          const partnerId = String(s.source).replace('SUSPECT_WITH_', '').split('|')[0];
+          suspectMap[s.studentId] = `Trùng máy/giờ với ${partnerId}`;
         }
       });
       for (let i = 0; i < checked.length; i++) {
         for (let j = i + 1; j < checked.length; j++) {
           const diff = Math.abs(checked[j].sec - checked[i].sec);
           if (diff <= 2) {
-            if (!suspectMap[checked[i].studentId]) suspectMap[checked[i].studentId] = `Bấm cách ${diff}s với ${checked[j].fullName}`;
-            if (!suspectMap[checked[j].studentId]) suspectMap[checked[j].studentId] = `Bấm cách ${diff}s với ${checked[i].fullName}`;
+            if (!suspectMap[checked[i].studentId]) suspectMap[checked[i].studentId] = `Cùng lúc (${diff}s) với ${checked[j].fullName}`;
+            if (!suspectMap[checked[j].studentId]) suspectMap[checked[j].studentId] = `Cùng lúc (${diff}s) với ${checked[i].fullName}`;
           }
         }
       }
@@ -1815,7 +1740,7 @@
 
       if (!showRosterNames) {
         suspectBanner.classList.add('hidden');
-        container.innerHTML = '<div style="padding:14px; text-align:center; color:var(--muted);">🙈 Đã ẩn danh sách sinh viên trên màn chiếu.</div>';
+        container.innerHTML = '<div style="padding:14px; text-align:center; color:var(--muted);">🙈 Đã ẩn danh sách.</div>';
         return;
       }
 
@@ -1825,8 +1750,7 @@
 
       if (suspectIds.length > 0) {
         suspectBanner.classList.remove('hidden');
-        suspectBanner.textContent =
-          `⚠️ Phát hiện ${suspectIds.length} sinh viên bấm điểm danh sát nhau ≤ 2 giây (Có khả năng 1 người cầm 2 máy bấm liền nhau). Hãy bấm "🎲 Gọi ngẫu nhiên 1 SV" hoặc kiểm tra các dòng màu vàng bên dưới!`;
+        suspectBanner.textContent = `⚠️ Phát hiện ${suspectIds.length} trường hợp bấm sát nhau ≤ 2s (dòng màu vàng).`;
       } else {
         suspectBanner.classList.add('hidden');
       }
@@ -1837,7 +1761,7 @@
       );
 
       if (filtered.length === 0) {
-        container.innerHTML = '<div style="padding:14px; text-align:center; color:var(--muted);">Không tìm thấy sinh viên phù hợp.</div>';
+        container.innerHTML = '<div style="padding:14px; text-align:center; color:var(--muted);">Không có kết quả.</div>';
         return;
       }
 
@@ -1850,13 +1774,14 @@
               <span style="color:var(--muted); font-size:0.8rem;">(${escapeHtml(st.studentId)})</span>
               <span class="status-pill st-${st.status}">${st.status}</span>
               ${st.time ? `<span style="font-size:0.75rem; color:var(--muted);">${escapeHtml(st.time)}</span>` : ''}
+              ${st.distance !== '' && st.distance !== undefined ? `<span style="font-size:0.74rem; color:#0f766e; font-weight:600;">(${escapeHtml(st.distance)}m)</span>` : ''}
               ${suspectNote ? `<span class="suspect-tag">⚠️ ${escapeHtml(suspectNote)}</span>` : ''}
             </div>
             <div style="display:flex; gap:4px;">
-              <button class="btn btn-outline btn-sm" title="Có mặt (Present)" onclick="teacherManualMark('${escapeHtml(st.studentId)}','P')">P</button>
-              <button class="btn btn-outline btn-sm" title="Đi trễ (Late)" onclick="teacherManualMark('${escapeHtml(st.studentId)}','L')">L</button>
-              <button class="btn btn-outline btn-sm" title="Có phép (Excused)" onclick="teacherManualMark('${escapeHtml(st.studentId)}','E')">E</button>
-              <button class="btn btn-outline btn-sm" title="Hủy điểm danh (Vắng mặt)" onclick="teacherManualMark('${escapeHtml(st.studentId)}','-')">-</button>
+              <button class="btn btn-outline btn-sm" onclick="teacherManualMark('${escapeHtml(st.studentId)}','P')">P</button>
+              <button class="btn btn-outline btn-sm" onclick="teacherManualMark('${escapeHtml(st.studentId)}','L')">L</button>
+              <button class="btn btn-outline btn-sm" onclick="teacherManualMark('${escapeHtml(st.studentId)}','E')">E</button>
+              <button class="btn btn-outline btn-sm" title="Hủy điểm danh" onclick="teacherManualMark('${escapeHtml(st.studentId)}','-')">-</button>
               <button class="btn btn-outline btn-sm" title="Mở khóa thiết bị" onclick="teacherResetStudentDevice('${escapeHtml(st.studentId)}')">🔓</button>
             </div>
           </div>
@@ -1864,23 +1789,22 @@
       }).join('');
     }
 
-    // RANDOM SPOT-CHECK (Counters a student bringing a 2nd physical phone for an absent friend)
     function triggerRandomSpotCheck() {
       const list = (teacherState && teacherState.roster) || [];
       const checkedIn = list.filter(s => s.status === 'P' || s.status === 'L');
       if (checkedIn.length === 0) {
-        showStatus('ℹ️ Chưa có sinh viên nào điểm danh Có mặt (P/L) trong phiên này để gọi ngẫu nhiên.', 'warn');
+        showStatus('ℹ️ Chưa có sinh viên nào điểm danh trong phiên này.', 'warn');
         return;
       }
 
       const pick = checkedIn[Math.floor(Math.random() * checkedIn.length)];
       openAppModal(
-        '🎲 Kiểm tra Ngẫu nhiên trên Lớp',
-        `Mời sinh viên: ${pick.fullName} (MSSV: ${pick.studentId} — Đã bấm lúc ${pick.time || 'vừa xong'}, cách GV ${pick.distance !== '' ? pick.distance + 'm' : 'N/A'}).\n\nNếu gọi tên mà VẮNG MẶT (nhờ bạn cầm máy thứ 2 bấm hộ), bấm nút bên dưới để HỦY kết quả về Vắng (-) ngay lập tức!`,
+        '🎲 Kiểm tra Ngẫu nhiên',
+        `${pick.fullName}\nMSSV: ${pick.studentId} (${pick.time || ''})`,
         '❌ Vắng mặt (Hủy điểm danh)',
         async () => {
           await teacherManualMark(pick.studentId, '-');
-          showStatus(`⚠️ Đã hủy điểm danh của ${pick.fullName} (${pick.studentId}) về trạng thái Vắng (-).`, 'warn');
+          showStatus(`⚠️ Đã hủy điểm danh của ${pick.fullName} (${pick.studentId}).`, 'warn');
         }
       );
     }
@@ -1902,8 +1826,8 @@
     function teacherResetStudentDevice(studentId) {
       openAppModal(
         '🔓 Mở khóa thiết bị',
-        `Bạn có chắc muốn mở khóa thiết bị cho MSSV ${studentId}? Sinh viên này sẽ có thể đăng ký lại trên điện thoại mới.`,
-        'Mở khóa ngay',
+        `Mở khóa thiết bị cho MSSV ${studentId}?`,
+        'Mở khóa',
         async () => {
           const auth = getTeacherAuth();
           const res = await callBackend(auth.apiUrl, {
@@ -1923,8 +1847,8 @@
     function teacherRotateStaticQr() {
       openAppModal(
         '🔑 Đổi mã khóa lớp',
-        'Tạo mã khóa tĩnh mới cho lớp này? (Hệ thống sẽ tự động đồng bộ mã mới cho chế độ 1 nút bấm).',
-        'Đổi mã mới',
+        'Tạo mã khóa mới cho lớp này?',
+        'Đổi mã',
         async () => {
           const auth = getTeacherAuth();
           const classId = document.getElementById('sel-tea-class').value;
@@ -1933,10 +1857,7 @@
             teacherToken: auth.token,
             classId: classId
           });
-          if (res.ok) {
-            applyTeacherState(res);
-            showStatus('✅ Đã tạo mã khóa lớp mới thành công!', 'success');
-          }
+          if (res.ok) applyTeacherState(res);
         }
       );
     }
@@ -1955,13 +1876,13 @@
     async function teacherRebuildSheet() {
       const auth = getTeacherAuth();
       const classId = document.getElementById('sel-tea-class').value;
-      showStatus('⏳ Đang đồng bộ bảng điểm danh trên Google Sheet...', 'warn');
+      showStatus('⏳ Đang đồng bộ vào Google Sheet...', 'warn');
       const res = await callBackend(auth.apiUrl, {
         action: 'TEACHER_REBUILD_REPORT',
         teacherToken: auth.token,
         classId: classId
       });
-      if (res.ok) showStatus('✅ Đã đồng bộ các cột điểm danh trên Google Sheet!', 'success');
+      if (res.ok) showStatus('✅ Đã đồng bộ Google Sheet!', 'success');
     }
 
     function onTeacherClassChange() {
@@ -1994,7 +1915,7 @@
 
     /**
      * ========================================================================
-     * 9. IN-PAGE MODAL & UTILITIES
+     * 8. MODAL & UTILITIES
      * ========================================================================
      */
     function openAppModal(title, bodyText, confirmLabel, onConfirm) {
@@ -2032,8 +1953,11 @@
     }
 
     function switchMode(mode) {
+      currentMode = mode;
       stopCameraScanner();
       hideStatus();
+      checkIosStandaloneNotice();
+
       const stuBtn = document.getElementById('btn-mode-student');
       const teaBtn = document.getElementById('btn-mode-teacher');
       const stuView = document.getElementById('view-student');
@@ -2047,7 +1971,7 @@
 
         const auth = getTeacherAuth();
         if (auth) {
-          document.getElementById('inp-tea-api').value = auth.apiUrl;
+          document.getElementById('inp-tea-api').value = normalizeApiUrl(auth.apiUrl);
           document.getElementById('inp-tea-token').value = auth.token;
           loginTeacher();
         }
@@ -2057,7 +1981,6 @@
         stuBtn.classList.add('active');
         teaView.classList.add('hidden');
         stuView.classList.remove('hidden');
-        updateAntiCheatShieldUI();
       }
     }
 
@@ -2065,7 +1988,6 @@
       currentLang = currentLang === 'en' ? 'vi' : 'en';
       safeSetLocal('cc_lang', currentLang);
       applyLanguage();
-      updateAntiCheatShieldUI();
     }
 
     function applyLanguage() {
