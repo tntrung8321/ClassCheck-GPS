@@ -570,15 +570,11 @@
             <!-- Left: GPS Station Info -->
             <div class="gps-station-box" id="printable-poster">
               <div class="radar-circle">📍</div>
-              <div style="font-weight:800; font-size:1.05rem; color:var(--primary); margin-bottom:4px;" id="poster-class-title">
+              <div style="font-weight:800; font-size:1.15rem; color:var(--primary); margin-bottom:12px;" id="poster-class-title">
                 Lớp học phần
               </div>
-              <div style="font-size:0.84rem; font-weight:700; color:var(--accent); margin-bottom:8px;" id="tea-gps-coords-badge">
-                🎯 Tâm: Đang tải...
-              </div>
-              <div style="font-size:0.8rem; color:var(--muted); margin-bottom:10px;" id="poster-qr-subtitle">
-                Sinh viên mở web và bấm nút Điểm danh.
-              </div>
+              <div class="hidden" id="tea-gps-coords-badge"></div>
+              <div class="hidden" id="poster-qr-subtitle"></div>
 
               <button class="btn btn-outline btn-sm no-print" onclick="teacherCalibrateRoomGpsNow()">
                 📍 Đặt vị trí máy này làm Tâm
@@ -1127,7 +1123,7 @@
       const selClass = document.getElementById('sel-student-class');
       const savedClass = safeGetLocal('cc_last_class_' + selInst, '');
       selClass.innerHTML = (p.enrolledClasses || []).map(c =>
-        `<option value="${escapeHtml(c.classId)}" ${c.classId === savedClass ? 'selected' : ''}>${escapeHtml(c.classId)}</option>`
+        `<option value="${escapeHtml(c.classId)}" ${c.classId === savedClass ? 'selected' : ''}>${escapeHtml(formatClassOptionLabel(c))}</option>`
       ).join('');
 
       selClass.onchange = () => {
@@ -1512,7 +1508,7 @@
       const currentVal = state.selectedClassId;
 
       sel.innerHTML = (state.classes || []).map(c =>
-        `<option value="${escapeHtml(c.classId)}" ${c.classId === currentVal ? 'selected' : ''}>${escapeHtml(c.classId)}</option>`
+        `<option value="${escapeHtml(c.classId)}" ${c.classId === currentVal ? 'selected' : ''}>${escapeHtml(formatClassOptionLabel(c))}</option>`
       ).join('');
 
       (state.classes || []).forEach(c => {
@@ -1529,12 +1525,6 @@
           `Đăng ký Thiết bị Mới: ${activeCfg.regOpen ? 'MỞ ✅' : 'KHÓA 🔒'}`;
         document.getElementById('poster-class-title').textContent =
           `${activeCfg.classId}`;
-
-        const dispLat = (ses && ses.roomLat) ? ses.roomLat : activeCfg.roomLat;
-        const dispLng = (ses && ses.roomLng) ? ses.roomLng : activeCfg.roomLng;
-        const dispRad = (ses && ses.radiusMeters) ? ses.radiusMeters : (activeCfg.radiusMeters || 100);
-        document.getElementById('tea-gps-coords-badge').textContent =
-          `🎯 Tâm: ${Number(dispLat).toFixed(5)}, ${Number(dispLng).toFixed(5)}`;
       }
 
       const roster = state.roster || [];
@@ -1569,7 +1559,7 @@
         });
         if (res.ok) {
           applyTeacherState(res);
-          showStatus(`✅ Đã đặt Tâm tại (${pos.coords.latitude.toFixed(5)}, ${pos.coords.longitude.toFixed(5)})!`, 'success');
+          showStatus('✅ Đã cập nhật vị trí Tâm điểm danh thành công!', 'success');
         } else {
           showStatus(res.message || res.code, 'err');
         }
@@ -2034,6 +2024,15 @@
       const m = String(Math.floor(totalSec / 60)).padStart(2, '0');
       const s = String(totalSec % 60).padStart(2, '0');
       return `${m}:${s}`;
+    }
+
+    function formatClassOptionLabel(c) {
+      if (!c) return '';
+      const id = String(c.classId || '').trim();
+      const name = String(c.className || '').trim();
+      if (!name || name === id) return id;
+      if (name.toUpperCase().startsWith(id.toUpperCase())) return name;
+      return `${id} — ${name}`;
     }
 
     function escapeHtml(str) {
