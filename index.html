@@ -556,7 +556,7 @@
         <!-- PANEL 1: 100m GPS STATION & SESSION CONTROL -->
         <div class="card">
           <div class="card-title">
-            <span data-i18n="tea_panel1_title">1. Điều khiển Điểm danh (Bán kính 100m)</span>
+            <span data-i18n="tea_panel1_title">1. Điều khiển Điểm danh</span>
             <div style="display:flex; gap:6px;">
               <button class="btn btn-outline btn-sm" onclick="toggleProjectorFullscreen()" data-i18n="tea_fullscreen_btn">🖥️ Projector View</button>
               <button class="btn btn-outline btn-sm" onclick="refreshTeacherState()" title="Làm mới">🔄</button>
@@ -574,14 +574,14 @@
                 Lớp học phần
               </div>
               <div style="font-size:0.84rem; font-weight:700; color:var(--accent); margin-bottom:8px;" id="tea-gps-coords-badge">
-                Tâm 100m: Đang tải...
+                🎯 Tâm: Đang tải...
               </div>
               <div style="font-size:0.8rem; color:var(--muted); margin-bottom:10px;" id="poster-qr-subtitle">
-                Sinh viên mở web và bấm nút Điểm danh trong bán kính 100m.
+                Sinh viên mở web và bấm nút Điểm danh.
               </div>
 
               <button class="btn btn-outline btn-sm no-print" onclick="teacherCalibrateRoomGpsNow()">
-                📍 Đặt vị trí máy này làm Tâm 100m
+                📍 Đặt vị trí máy này làm Tâm
               </button>
 
               <div id="teacher-qr-canvas" class="hidden" style="margin-top:10px; padding:10px; background:#fff; border-radius:10px;"></div>
@@ -601,7 +601,7 @@
 
               <label style="display:flex; align-items:center; gap:8px; cursor:pointer; margin:10px 0; background:#f0fdf4; padding:8px 10px; border-radius:8px; border:1px solid #bbf7d0;">
                 <input type="checkbox" id="chk-use-phone-gps" checked style="width:18px; height:18px;" />
-                <span data-i18n="tea_calibrate_gps_chk">📍 Cập nhật Tâm 100m theo GPS máy này khi Bắt đầu</span>
+                <span data-i18n="tea_calibrate_gps_chk">📍 Cập nhật Tâm theo GPS máy này khi Bắt đầu</span>
               </label>
 
               <button id="btn-tea-start" class="btn btn-accent" onclick="teacherStartSession()" data-i18n="tea_start_btn">
@@ -724,10 +724,10 @@
         tea_persist_phone: "Thiết bị cá nhân của Giảng viên (Giữ đăng nhập)",
         tea_persist_pc: "Máy tính phòng học (Tự đăng xuất khi đóng tab)",
         tea_login_btn: "Đăng nhập",
-        tea_panel1_title: "1. Điều khiển Điểm danh (Bán kính 100m)",
+        tea_panel1_title: "1. Điều khiển Điểm danh",
         tea_fullscreen_btn: "🖥️ Toàn màn hình",
         tea_select_class: "Lớp học phần:",
-        tea_calibrate_gps_chk: "📍 Cập nhật Tâm 100m theo GPS máy này khi Bắt đầu",
+        tea_calibrate_gps_chk: "📍 Cập nhật Tâm theo GPS máy này khi Bắt đầu",
         tea_start_btn: "▶️ BẮT ĐẦU ĐIỂM DANH",
         tea_extend_btn: "+2 Phút",
         tea_reopen_btn: "Mở lại 5p",
@@ -782,10 +782,10 @@
         tea_persist_phone: "Personal Lecturer Device (Stay Signed In)",
         tea_persist_pc: "Shared Classroom PC (Auto-Logout on close)",
         tea_login_btn: "Sign In",
-        tea_panel1_title: "1. Attendance Control (100m Radius)",
+        tea_panel1_title: "1. Attendance Control",
         tea_fullscreen_btn: "🖥️ Fullscreen",
         tea_select_class: "Class:",
-        tea_calibrate_gps_chk: "📍 Set 100m center to this device's GPS on Start",
+        tea_calibrate_gps_chk: "📍 Set center to this device's GPS on Start",
         tea_start_btn: "▶️ START ATTENDANCE",
         tea_extend_btn: "+2 Mins",
         tea_reopen_btn: "Reopen 5m",
@@ -857,7 +857,12 @@
 
     function normalizeApiUrl(url) {
       const clean = String(url || '').trim();
-      if (!clean || LEGACY_LECTURER_APIS.includes(clean)) {
+      if (
+        !clean ||
+        LEGACY_LECTURER_APIS.includes(clean) ||
+        !clean.startsWith('https://script.google.com/macros/s/') ||
+        !clean.endsWith('/exec')
+      ) {
         return DEFAULT_LECTURER_API;
       }
       return clean;
@@ -867,17 +872,21 @@
       const profiles = getStudentProfiles();
       let changed = false;
       Object.keys(profiles).forEach(k => {
-        if (LEGACY_LECTURER_APIS.includes(profiles[k].apiUrl)) {
-          profiles[k].apiUrl = DEFAULT_LECTURER_API;
+        const norm = normalizeApiUrl(profiles[k].apiUrl);
+        if (profiles[k].apiUrl !== norm) {
+          profiles[k].apiUrl = norm;
           changed = true;
         }
       });
       if (changed) safeSetLocal('cc_student_profiles', JSON.stringify(profiles));
 
       const tAuth = getTeacherAuth();
-      if (tAuth && LEGACY_LECTURER_APIS.includes(tAuth.apiUrl)) {
-        tAuth.apiUrl = DEFAULT_LECTURER_API;
-        safeSetLocal('cc_teacher_auth', JSON.stringify(tAuth));
+      if (tAuth) {
+        const norm = normalizeApiUrl(tAuth.apiUrl);
+        if (tAuth.apiUrl !== norm) {
+          tAuth.apiUrl = norm;
+          safeSetLocal('cc_teacher_auth', JSON.stringify(tAuth));
+        }
       }
     }
 
@@ -1118,7 +1127,7 @@
       const selClass = document.getElementById('sel-student-class');
       const savedClass = safeGetLocal('cc_last_class_' + selInst, '');
       selClass.innerHTML = (p.enrolledClasses || []).map(c =>
-        `<option value="${escapeHtml(c.classId)}" ${c.classId === savedClass ? 'selected' : ''}>${escapeHtml(c.classId)} — ${escapeHtml(c.className)}</option>`
+        `<option value="${escapeHtml(c.classId)}" ${c.classId === savedClass ? 'selected' : ''}>${escapeHtml(c.classId)}</option>`
       ).join('');
 
       selClass.onchange = () => {
@@ -1503,7 +1512,7 @@
       const currentVal = state.selectedClassId;
 
       sel.innerHTML = (state.classes || []).map(c =>
-        `<option value="${escapeHtml(c.classId)}" ${c.classId === currentVal ? 'selected' : ''}>${escapeHtml(c.classId)} — ${escapeHtml(c.className)}</option>`
+        `<option value="${escapeHtml(c.classId)}" ${c.classId === currentVal ? 'selected' : ''}>${escapeHtml(c.classId)}</option>`
       ).join('');
 
       (state.classes || []).forEach(c => {
@@ -1519,13 +1528,13 @@
         document.getElementById('btn-reg-gate-toggle').textContent =
           `Đăng ký Thiết bị Mới: ${activeCfg.regOpen ? 'MỞ ✅' : 'KHÓA 🔒'}`;
         document.getElementById('poster-class-title').textContent =
-          `${activeCfg.classId} — ${activeCfg.className}`;
+          `${activeCfg.classId}`;
 
         const dispLat = (ses && ses.roomLat) ? ses.roomLat : activeCfg.roomLat;
         const dispLng = (ses && ses.roomLng) ? ses.roomLng : activeCfg.roomLng;
         const dispRad = (ses && ses.radiusMeters) ? ses.radiusMeters : (activeCfg.radiusMeters || 100);
         document.getElementById('tea-gps-coords-badge').textContent =
-          `🎯 Tâm: ${Number(dispLat).toFixed(5)}, ${Number(dispLng).toFixed(5)} (≤ ${dispRad}m)`;
+          `🎯 Tâm: ${Number(dispLat).toFixed(5)}, ${Number(dispLng).toFixed(5)}`;
       }
 
       const roster = state.roster || [];
@@ -1546,7 +1555,7 @@
       const classId = document.getElementById('sel-tea-class').value;
       if (!auth || !classId) return;
 
-      showStatus('📍 Đang lấy tọa độ GPS của máy bạn làm Tâm 100m...', 'warn');
+      showStatus('📍 Đang lấy tọa độ GPS của máy bạn làm Tâm...', 'warn');
       try {
         const pos = await getAccuratePosition();
         const res = await callBackend(auth.apiUrl, {
@@ -1560,7 +1569,7 @@
         });
         if (res.ok) {
           applyTeacherState(res);
-          showStatus(`✅ Đã đặt Tâm 100m tại (${pos.coords.latitude.toFixed(5)}, ${pos.coords.longitude.toFixed(5)})!`, 'success');
+          showStatus(`✅ Đã đặt Tâm tại (${pos.coords.latitude.toFixed(5)}, ${pos.coords.longitude.toFixed(5)})!`, 'success');
         } else {
           showStatus(res.message || res.code, 'err');
         }
@@ -1642,7 +1651,7 @@
 
       let lat = 0, lng = 0;
       if (usePhoneGps) {
-        showStatus('📍 Đang lấy tọa độ GPS làm tâm 100m...', 'warn');
+        showStatus('📍 Đang lấy tọa độ GPS làm Tâm...', 'warn');
         try {
           const pos = await getAccuratePosition();
           lat = pos.coords.latitude;
