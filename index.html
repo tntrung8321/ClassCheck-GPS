@@ -673,16 +673,18 @@
      * 0. MASTER SHEET CONNECTION SETTINGS
      * ========================================================================
      */
-    const DEFAULT_LECTURER_API = 'https://script.google.com/macros/s/AKfycbwbpZhoQtQJjPhvmsVg8vNxhPL4v2bcXDWUewxSIlMgf8iGq75lr6vzZZwVMiQ-YaS7/exec';
+    const DEFAULT_LECTURER_API = 'https://script.google.com/macros/s/AKfycbzZjnmd3XzGpdccZLPKzxRy84V9KTE8rdI3Y7oSFbZTfv_Fo9sfGbMDHmoG7_4itfmX/exec';
     const LEGACY_LECTURER_APIS = [
+      'https://script.google.com/macros/s/AKfycbxc9TUVcoQ9BFtcXl9_lSvI5c1AntDOn56DwpsDtDiK9p5P8blbutJmgLq_mHEJGWT2/exec',
+      'https://script.google.com/macros/s/AKfycbwbpZhoQtQJjPhvmsVg8vNxhPL4v2bcXDWUewxSIlMgf8iGq75lr6vzZZwVMiQ-YaS7/exec',
       'https://script.google.com/macros/s/AKfycbzuSyHCUnHiMsLr6r-VEfPK8ghEHiWO0109azkoo1VstAMhfoBQ9v1agRj3gsHNXIw/exec',
       'https://script.google.com/macros/s/AKfycbz01o_3_O5PxuDq9V8uQ0cJy1ahCgEcM_QSlgNHLvkD8awXq0QCnf3HmoSRQl4PxBQM/exec'
     ];
     const DEFAULT_LECTURER_NAME = 'Tran Nguyen Trung';
-    const DEFAULT_INST_ID = 'INST_yu8gCgWWy8';
+    const DEFAULT_INST_ID = 'INST_iECj3Sep5K';
 
     const KNOWN_CLASS_SECRETS = {
-      '2610AVCB002': 'QR_2610AVCB002_ZETUGC',
+      '2610AVCB002': 'QR_2610AVCB002_2CM2J4',
       '2610AVCB003': 'QR_2610AVCB003_EPCZFV',
       '2610AVCB004': 'QR_2610AVCB004_27AFXR',
       'ENG101_G1': 'QR_ENG101_KGX2AS'
@@ -980,12 +982,18 @@
     }
 
     function inspectGpsForSpoofing(pos) {
-      if (!pos || !pos.coords) return { suspicious: true, reason: 'No GPS' };
+      if (!pos || !pos.coords) return { suspicious: true, hardBlock: true, reason: 'No GPS' };
       const c = pos.coords;
       if (typeof c.accuracy !== 'number' || c.accuracy <= 0) {
-        return { suspicious: true, reason: 'Invalid accuracy' };
+        return { suspicious: true, hardBlock: true, reason: 'Invalid accuracy' };
       }
-      return { suspicious: false, reason: '' };
+      try {
+        const fnStr = Function.prototype.toString.call(navigator.geolocation.getCurrentPosition);
+        if (!fnStr.includes('[native code]')) {
+          return { suspicious: true, hardBlock: false, reason: 'F12_GEO_OVERRIDE' };
+        }
+      } catch (e) {}
+      return { suspicious: false, hardBlock: false, reason: '' };
     }
 
     /**
@@ -1104,6 +1112,7 @@
       noBox.classList.add('hidden');
 
       const selInst = document.getElementById('sel-student-inst');
+      selInst.classList.toggle('hidden', instIds.length <= 1);
       const activeInst = safeGetLocal('cc_active_inst', instIds[0]);
       selInst.innerHTML = instIds.map(id => {
         const p = profiles[id];
@@ -1208,12 +1217,7 @@
         return;
       }
 
-      const enrolledItem = (profile.enrolledClasses || []).find(c => c.classId === classId);
-      const autoToken = (enrolledItem && enrolledItem.activeQrSecret)
-        || KNOWN_CLASS_SECRETS[classId]
-        || 'BUTTON_GPS_CHECKIN';
-
-      await executeStudentCheckIn(autoToken);
+      await executeStudentCheckIn('BUTTON_GPS_CHECKIN');
     }
 
     async function executeStudentCheckIn(qrString) {
@@ -1254,7 +1258,7 @@
       }
 
       const spoofCheck = inspectGpsForSpoofing(pos);
-      if (spoofCheck.suspicious) {
+      if (spoofCheck.hardBlock) {
         btn.disabled = false;
         pill.className = 'badge-err';
         pill.textContent = 'Lỗi vị trí';
@@ -1464,7 +1468,7 @@
       });
 
       if (!res.ok) {
-        showStatus(formatServerMessage(res.code, {}, res.message), 'err');
+        showStatus(res.message || formatServerMessage(res.code, {}, res.message), 'err');
         return;
       }
 
@@ -1553,6 +1557,7 @@
           teacherToken: auth.token,
           classId: classId,
           usePhoneGps: true,
+          calibrateOnly: true,
           lat: pos.coords.latitude,
           lng: pos.coords.longitude,
           qrMode: 'STATIC'
@@ -1717,8 +1722,12 @@
       const suspectMap = {};
       (roster || []).forEach(s => {
         if (s.source && String(s.source).startsWith('SUSPECT_WITH_')) {
-          const partnerId = String(s.source).replace('SUSPECT_WITH_', '').split('|')[0];
-          suspectMap[s.studentId] = `Trùng máy/giờ với ${partnerId}`;
+          const parts = String(s.source).split('|');
+          const partnerId = parts[0].replace('SUSPECT_WITH_', '');
+          suspectMap[s.studentId] = parts[1] || `Trùng máy/giờ với ${partnerId}`;
+          if (partnerId && partnerId !== 'DEVTOOLS' && !suspectMap[partnerId]) {
+            suspectMap[partnerId] = `Trùng máy/giờ với ${s.studentId}`;
+          }
         }
       });
       for (let i = 0; i < checked.length; i++) {
